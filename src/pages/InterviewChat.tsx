@@ -94,8 +94,8 @@ const InterviewChat = () => {
               onClick={handleExit}
               className="text-muted-foreground hover:text-foreground shrink-0"
             >
-              <X className="h-4 w-4 mr-1" />
-              Exit
+              Save and Exit
+              <X className="h-4 w-4 ml-1" />
             </Button>
           </div>
         </div>
