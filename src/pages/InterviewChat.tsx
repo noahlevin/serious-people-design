@@ -4,15 +4,25 @@ import { Button } from "@/components/ui/button";
 import { X } from "lucide-react";
 import ChatMessage from "@/components/interview/ChatMessage";
 import ChatInput from "@/components/interview/ChatInput";
+import WelcomeCard from "@/components/interview/WelcomeCard";
+import SectionDivider from "@/components/interview/SectionDivider";
+import { Message, mockResponses, interviewQuestions, interviewSections } from "@/data/mockInterview";
 
-import { Message, initialMessage, mockResponses, interviewQuestions } from "@/data/mockInterview";
+// First message without the intro (welcome card handles that)
+const firstQuestion: Message = {
+  id: '1',
+  role: 'assistant',
+  content: "Let's start with the basics—tell me about your current role. What company are you with, and what's your title?",
+  timestamp: new Date()
+};
 
 const InterviewChat = () => {
   const navigate = useNavigate();
-  const [messages, setMessages] = useState<Message[]>([initialMessage]);
+  const [messages, setMessages] = useState<Message[]>([firstQuestion]);
   const [questionIndex, setQuestionIndex] = useState(0);
   const [isTyping, setIsTyping] = useState(false);
   const [isComplete, setIsComplete] = useState(false);
+  const [shownSections, setShownSections] = useState<string[]>(['context']);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const totalQuestions = interviewQuestions.length;
@@ -23,7 +33,12 @@ const InterviewChat = () => {
 
   useEffect(() => {
     scrollToBottom();
-  }, [messages]);
+  }, [messages, shownSections]);
+
+  // Check if we need to show a section divider before this question index
+  const getSectionForQuestion = (qIndex: number) => {
+    return interviewSections.find(s => s.startsAtQuestion === qIndex);
+  };
 
   const handleSendMessage = (content: string) => {
     // Add user message
@@ -37,6 +52,12 @@ const InterviewChat = () => {
 
     const nextIndex = questionIndex + 1;
     setQuestionIndex(nextIndex);
+
+    // Check if next question triggers a new section
+    const nextSection = getSectionForQuestion(nextIndex);
+    if (nextSection && !shownSections.includes(nextSection.id)) {
+      setShownSections(prev => [...prev, nextSection.id]);
+    }
 
     // Simulate AI typing
     setIsTyping(true);
@@ -78,6 +99,53 @@ const InterviewChat = () => {
     }
   };
 
+  // Build the chat content with section dividers interspersed
+  const renderChatContent = () => {
+    const elements: React.ReactNode[] = [];
+    let messageIndex = 0;
+
+    // Add welcome card first
+    elements.push(<WelcomeCard key="welcome" />);
+
+    // Add first section divider
+    const firstSection = interviewSections[0];
+    if (firstSection) {
+      elements.push(
+        <SectionDivider 
+          key={`section-${firstSection.id}`}
+          title={firstSection.title}
+          subtitle={firstSection.subtitle}
+        />
+      );
+    }
+
+    // Now render messages, inserting section dividers as needed
+    messages.forEach((message, idx) => {
+      // Check if this message triggers a new section (for AI messages after question 0)
+      if (message.role === 'assistant' && idx > 0) {
+        // Figure out which question this corresponds to
+        const assistantMessages = messages.slice(0, idx + 1).filter(m => m.role === 'assistant');
+        const qIdx = assistantMessages.length - 1;
+        
+        const section = getSectionForQuestion(qIdx);
+        if (section && section.startsAtQuestion > 0) {
+          elements.push(
+            <SectionDivider 
+              key={`section-${section.id}`}
+              title={section.title}
+              subtitle={section.subtitle}
+            />
+          );
+        }
+      }
+
+      elements.push(<ChatMessage key={message.id} message={message} />);
+      messageIndex++;
+    });
+
+    return elements;
+  };
+
   return (
     <div className="h-screen flex flex-col bg-background">
       {/* Header */}
@@ -112,9 +180,7 @@ const InterviewChat = () => {
       {/* Chat Messages */}
       <main className="flex-1 overflow-y-auto">
         <div className="max-w-2xl mx-auto px-4 py-6 space-y-3">
-          {messages.map((message) => (
-            <ChatMessage key={message.id} message={message} />
-          ))}
+          {renderChatContent()}
           
           {isTyping && (
             <ChatMessage 

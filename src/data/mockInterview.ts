@@ -5,6 +5,19 @@ export interface Message {
   timestamp: Date;
 }
 
+export interface InterviewSection {
+  id: string;
+  title: string;
+  subtitle?: string;
+  startsAtQuestion: number;
+}
+
+export const interviewSections: InterviewSection[] = [
+  { id: 'context', title: 'Your Context', subtitle: 'Current situation', startsAtQuestion: 0 },
+  { id: 'catalyst', title: 'The Catalyst', subtitle: 'What changed', startsAtQuestion: 2 },
+  { id: 'vision', title: 'Your Vision', subtitle: 'Where you want to go', startsAtQuestion: 4 },
+];
+
 export const interviewQuestions = [
   "Tell me about your current role. What company are you with, and what's your title?",
   "How long have you been in this position, and how long with the company overall?",
