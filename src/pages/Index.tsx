@@ -3,10 +3,8 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { useFloatingParallax } from "@/hooks/useParallax";
-import HeroShapes from "@/components/graphics/HeroShapes";
 import situationIcons from "@/components/graphics/SituationIcons";
 import ProcessPath from "@/components/graphics/ProcessPath";
-import TypographicAccents from "@/components/graphics/TypographicAccents";
 
 const situations = [
   "wondering if it's time to leave",
@@ -65,8 +63,6 @@ const Landing = () => {
 
       {/* Hero - Asymmetric Layout */}
       <section className="sp-container sp-section relative">
-        {/* Geometric shapes background */}
-        <HeroShapes parallaxOffset={parallax.slow} />
         
         <div className="grid lg:grid-cols-12 gap-12 lg:gap-8 items-start relative z-10">
           {/* Main content - offset to the left */}
@@ -276,13 +272,10 @@ const Landing = () => {
       </section>
 
       {/* Social proof */}
-      <section className="sp-section-sage border-t border-sage-light relative overflow-hidden">
-        {/* Typographic accents */}
-        <TypographicAccents isRevealed={statsReveal.isRevealed} />
-        
+      <section className="sp-section-sage border-t border-sage-light">
         <div 
           ref={statsReveal.ref}
-          className={`sp-container py-16 md:py-24 reveal-scale relative z-10 ${statsReveal.isRevealed ? "revealed" : ""}`}
+          className={`sp-container py-16 md:py-24 reveal-scale ${statsReveal.isRevealed ? "revealed" : ""}`}
         >
           <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16 text-center">
             {[
