@@ -13,13 +13,13 @@ const ChatMessage = ({ message, isTyping = false }: ChatMessageProps) => {
       className={`flex ${isAssistant ? 'justify-start' : 'justify-end'} animate-fade-in`}
     >
       <div 
-        className={`max-w-[80%] md:max-w-[70%] ${
+        className={`max-w-[80%] md:max-w-[70%] rounded-2xl px-4 py-2.5 ${
           isAssistant 
-            ? 'bg-sage-wash/30' 
-            : 'bg-foreground/[0.03]'
-        } rounded-2xl px-4 py-2.5`}
+            ? 'bg-sage-wash/50' 
+            : 'bg-accent/10'
+        }`}
       >
-        <p className={`${isAssistant ? 'font-display text-foreground' : 'text-foreground'} text-[15px] leading-snug whitespace-pre-wrap`}>
+        <p className="text-foreground text-[15px] leading-snug whitespace-pre-wrap">
           {message.content}
           {isTyping && (
             <span className="inline-flex ml-1 items-center">
