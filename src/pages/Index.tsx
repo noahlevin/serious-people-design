@@ -6,7 +6,6 @@ import { useFloatingParallax } from "@/hooks/useParallax";
 import situationIcons from "@/components/graphics/SituationIcons";
 import ProcessPath from "@/components/graphics/ProcessPath";
 
-
 const situations = [
   "wondering if it's time to leave",
   "dealing with a difficult manager",
@@ -94,11 +93,11 @@ const Landing = () => {
       {/* Hero - Asymmetric Layout */}
       <section className="sp-container sp-section relative">
         
-        <div className="grid md:grid-cols-12 gap-12 md:gap-8 items-center relative z-10">
+        <div className="grid lg:grid-cols-12 gap-12 lg:gap-8 items-start relative z-10">
           {/* Main content - offset to the left */}
           <div 
             ref={heroReveal.ref}
-            className={`md:col-span-7 md:col-start-1 reveal-left ${heroReveal.isRevealed ? "revealed" : ""}`}
+            className={`lg:col-span-7 lg:col-start-1 reveal-left ${heroReveal.isRevealed ? "revealed" : ""}`}
           >
             <p className="sp-eyebrow mb-6 text-primary">
               Career coaching for senior professionals
@@ -144,6 +143,7 @@ const Landing = () => {
               </Button>
             </div>
           </div>
+          
         </div>
       </section>
 
