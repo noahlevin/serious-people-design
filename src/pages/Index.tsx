@@ -94,11 +94,11 @@ const Landing = () => {
       {/* Hero - Asymmetric Layout */}
       <section className="sp-container sp-section relative">
         
-        <div className="grid lg:grid-cols-12 gap-12 lg:gap-8 items-start relative z-10">
+        <div className="grid md:grid-cols-12 gap-12 md:gap-8 items-center relative z-10">
           {/* Main content - offset to the left */}
           <div 
             ref={heroReveal.ref}
-            className={`lg:col-span-7 lg:col-start-1 reveal-left ${heroReveal.isRevealed ? "revealed" : ""}`}
+            className={`md:col-span-7 md:col-start-1 reveal-left ${heroReveal.isRevealed ? "revealed" : ""}`}
           >
             <p className="sp-eyebrow mb-6 text-primary">
               Career coaching for senior professionals
@@ -146,11 +146,11 @@ const Landing = () => {
           </div>
           
           {/* Hero illustration */}
-          <div className="hidden lg:block lg:col-span-5 lg:col-start-8">
+          <div className="hidden md:flex md:col-span-5 md:col-start-8 items-center justify-center">
             <img 
               src={heroIllustration} 
               alt="Illustration of a professional contemplating career decisions" 
-              className="w-full h-auto opacity-90"
+              className="w-full max-w-md h-auto"
             />
           </div>
         </div>
