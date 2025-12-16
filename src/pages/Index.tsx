@@ -5,7 +5,7 @@ import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { useFloatingParallax } from "@/hooks/useParallax";
 import situationIcons from "@/components/graphics/SituationIcons";
 import ProcessPath from "@/components/graphics/ProcessPath";
-import heroIllustration from "@/assets/hero-illustration.png";
+
 
 const situations = [
   "wondering if it's time to leave",
@@ -143,15 +143,6 @@ const Landing = () => {
                 </span>
               </Button>
             </div>
-          </div>
-          
-          {/* Hero illustration */}
-          <div className="hidden md:flex md:col-span-5 md:col-start-8 items-center justify-center">
-            <img 
-              src={heroIllustration} 
-              alt="Illustration of a professional contemplating career decisions" 
-              className="w-full max-w-md h-auto"
-            />
           </div>
         </div>
       </section>
