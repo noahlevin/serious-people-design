@@ -19,8 +19,8 @@ export default {
     },
     extend: {
       fontFamily: {
-        display: ["Playfair Display", "Georgia", "serif"],
-        body: ["Inter", "-apple-system", "BlinkMacSystemFont", "sans-serif"],
+        display: ["Space Grotesk", "-apple-system", "sans-serif"],
+        body: ["Inter", "-apple-system", "sans-serif"],
       },
       colors: {
         border: "hsl(var(--border))",
