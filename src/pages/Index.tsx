@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 
 const situations = [
@@ -20,16 +21,16 @@ const Landing = () => {
       setTimeout(() => {
         setCurrentSituation((prev) => (prev + 1) % situations.length);
         setIsVisible(true);
-      }, 500);
-    }, 4000);
+      }, 400);
+    }, 3500);
     return () => clearInterval(interval);
   }, []);
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Navigation - Simple, understated */}
-      <nav className="sp-container py-8 flex items-center justify-between">
-        <div className="font-display text-lg italic">
+      {/* Navigation */}
+      <nav className="sp-container py-6 flex items-center justify-between">
+        <div className="font-display text-xl tracking-tight">
           Serious People
         </div>
         <div className="flex items-center gap-8">
@@ -39,189 +40,186 @@ const Landing = () => {
           <a href="/resources" className="sp-link text-sm text-muted-foreground hover:text-foreground transition-colors">
             Resources
           </a>
-          <a href="/login" className="text-sm font-medium text-primary hover:text-primary/80 transition-colors">
+          <a href="/login" className="text-sm font-medium hover:text-primary transition-colors">
             Log in
           </a>
         </div>
       </nav>
 
-      {/* Hero - Book-like, centered, intimate */}
+      {/* Hero - Asymmetric Layout */}
       <section className="sp-container sp-section">
-        <div className="max-w-2xl mx-auto text-center">
-          <p className="sp-chapter animate-fade-in">
-            A guide for senior professionals
-          </p>
+        <div className="grid lg:grid-cols-12 gap-12 lg:gap-8 items-start">
+          {/* Main content - offset to the left */}
+          <div className="lg:col-span-7 lg:col-start-1">
+            <p className="sp-eyebrow mb-6 animate-fade-in-up">
+              Career coaching for senior professionals
+            </p>
+            
+            <h1 className="font-display text-balance mb-8 animate-fade-in-up" style={{ animationDelay: "0.1s" }}>
+              You're{" "}
+              <span 
+                className={`text-primary transition-opacity duration-400 ${isVisible ? "opacity-100" : "opacity-0"}`}
+              >
+                {situations[currentSituation]}
+              </span>
+            </h1>
+            
+            <p className="text-lg text-muted-foreground max-w-xl mb-10 animate-fade-in-up" style={{ animationDelay: "0.2s" }}>
+              A structured coaching experience that helps you think clearly about 
+              your career—and leave with a concrete plan, not vague advice.
+            </p>
+            
+            <div className="flex flex-col sm:flex-row gap-4 animate-fade-in-up" style={{ animationDelay: "0.3s" }}>
+              <Button 
+                size="lg" 
+                className="group bg-foreground text-background hover:bg-foreground/90 px-8 h-12 text-base"
+              >
+                Start free interview
+                <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+              </Button>
+              <Button 
+                variant="ghost" 
+                size="lg"
+                className="text-muted-foreground hover:text-foreground h-12 text-base"
+              >
+                See how it works
+              </Button>
+            </div>
+          </div>
           
-          <h1 className="text-balance mb-8 animate-fade-in-up" style={{ animationDelay: "0.1s" }}>
-            You're{" "}
-            <span 
-              className={`text-primary transition-opacity duration-500 ${isVisible ? "opacity-100" : "opacity-0"}`}
-            >
-              {situations[currentSituation]}
-            </span>
-          </h1>
-          
-          <p className="text-lg text-muted-foreground mb-10 animate-fade-in-up leading-relaxed" style={{ animationDelay: "0.2s" }}>
-            A structured coaching experience that helps you think clearly about 
-            your career—and leave with a concrete plan, not vague advice.
-          </p>
-          
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-in-up" style={{ animationDelay: "0.3s" }}>
-            <button className="sp-btn sp-btn-primary group">
-              Start your free interview
-              <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-            </button>
-            <button className="sp-btn sp-btn-ghost">
-              See how it works
-            </button>
+          {/* Pull quote - offset to the right */}
+          <div className="lg:col-span-4 lg:col-start-9 lg:mt-24">
+            <blockquote className="sp-quote">
+              "I spent months going in circles. One hour with this process gave me more clarity than a year of overthinking."
+            </blockquote>
+            <p className="mt-4 text-sm text-muted-foreground">
+              — VP of Engineering, Series C startup
+            </p>
           </div>
         </div>
       </section>
-
-      {/* Ornamental divider */}
-      <div className="sp-rule-ornament">❧</div>
-
-      {/* Pull Quote */}
-      <section className="sp-container sp-section-sm">
-        <div className="max-w-xl mx-auto">
-          <blockquote className="sp-quote">
-            "I spent months going in circles. One hour with this process gave me more clarity than a year of overthinking."
-          </blockquote>
-          <p className="mt-6 text-center text-sm text-muted-foreground italic">
-            — VP of Engineering, Series C startup
-          </p>
-        </div>
-      </section>
-
-      {/* Ornamental divider */}
-      <div className="sp-rule-ornament">❧</div>
 
       {/* Situations Section */}
-      <section className="sp-container sp-section">
-        <div className="max-w-3xl mx-auto">
-          <p className="sp-chapter text-center">Chapter One</p>
-          <h2 className="text-balance text-center mb-4">
-            What brings people here
-          </h2>
-          <p className="text-center text-muted-foreground mb-12 max-w-lg mx-auto">
-            These are the moments when career decisions feel weightiest—when you need thinking, not just advice.
-          </p>
+      <section className="sp-container sp-section border-t border-border">
+        <div className="grid lg:grid-cols-12 gap-12">
+          <div className="lg:col-span-4">
+            <p className="sp-eyebrow mb-4">What brings people here</p>
+            <h2 className="font-display text-balance">
+              Career decisions shouldn't feel like guesswork
+            </h2>
+          </div>
           
-          <div className="grid md:grid-cols-2 gap-6 stagger-children">
-            {[
-              {
-                title: "Stay or go?",
-                description: "You've been thinking about leaving for months, but can't decide if it's the right move."
-              },
-              {
-                title: "A difficult manager",
-                description: "Your boss is making your life difficult. You're not sure if it's fixable or time to exit."
-              },
-              {
-                title: "Burnout",
-                description: "You're exhausted and know something needs to change, but what? A new job? A break?"
-              },
-              {
-                title: "Negotiating an exit",
-                description: "You've decided to leave. Now you need to navigate the conversation without burning bridges."
-              },
-              {
-                title: "The counter-offer",
-                description: "They matched your offer. Now you're second-guessing everything."
-              },
-              {
-                title: "Two paths",
-                description: "You have options, but comparing them feels impossible. Different roles, different tradeoffs."
-              }
-            ].map((situation, index) => (
-              <div 
-                key={index} 
-                className="sp-card"
-              >
-                <h3 className="font-display text-lg mb-2">
-                  {situation.title}
-                </h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">
-                  {situation.description}
-                </p>
-              </div>
-            ))}
+          <div className="lg:col-span-7 lg:col-start-6">
+            <div className="grid sm:grid-cols-2 gap-6 stagger-children">
+              {[
+                {
+                  title: "Stay or go?",
+                  description: "You've been thinking about leaving for months, but can't decide if it's the right move."
+                },
+                {
+                  title: "Bad manager",
+                  description: "Your boss is making your life difficult. You're not sure if it's fixable or time to exit."
+                },
+                {
+                  title: "Burnout",
+                  description: "You're exhausted and know something needs to change, but what? A new job? A break? A career shift?"
+                },
+                {
+                  title: "Negotiating an exit",
+                  description: "You've decided to leave. Now you need to navigate the conversation without burning bridges."
+                },
+                {
+                  title: "Counter-offer dilemma",
+                  description: "They matched your offer. Now you're second-guessing everything."
+                },
+                {
+                  title: "Two opportunities",
+                  description: "You have options, but comparing them feels impossible. Different roles, different tradeoffs."
+                }
+              ].map((situation, index) => (
+                <div 
+                  key={index} 
+                  className="sp-card sp-hover-lift cursor-pointer group"
+                >
+                  <h3 className="font-display text-lg mb-2 group-hover:text-primary transition-colors">
+                    {situation.title}
+                  </h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">
+                    {situation.description}
+                  </p>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
-
-      {/* Ornamental divider */}
-      <div className="sp-rule-ornament">❧</div>
 
       {/* How it works */}
-      <section className="sp-container sp-section">
-        <div className="max-w-2xl mx-auto">
-          <p className="sp-chapter text-center">Chapter Two</p>
-          <h2 className="text-balance text-center mb-4">
+      <section className="sp-container sp-section border-t border-border">
+        <div className="max-w-content-medium mx-auto">
+          <p className="sp-eyebrow mb-4 text-center">The process</p>
+          <h2 className="font-display text-balance text-center mb-16">
             Three sessions. One clear plan.
           </h2>
-          <p className="text-center text-muted-foreground mb-12">
-            A simple process designed to cut through the noise.
-          </p>
           
-          <div className="space-y-12">
-            {[
-              {
-                step: "I",
-                title: "The Interview",
-                description: "A free 15-minute AI conversation to understand your situation. We'll map out what's really going on—the facts, the feelings, and the forces at play.",
-                note: "Free, no commitment"
-              },
-              {
-                step: "II",
-                title: "The Coaching",
-                description: "Three focused modules tailored to your situation. Not generic advice you could find in a book—specific guidance for your circumstances.",
-                note: "Personalized to you"
-              },
-              {
-                step: "III",
-                title: "The Plan",
-                description: "Walk away with scripts for difficult conversations, realistic timelines, and decision frameworks. Everything you need to act with confidence.",
-                note: "Concrete deliverables"
-              }
-            ].map((step, index) => (
-              <div key={index} className="flex gap-8">
-                <div className="flex-shrink-0">
-                  <span className="font-display text-3xl text-primary/60">{step.step}</span>
-                </div>
-                <div>
+          <div className="relative">
+            {/* Connecting line */}
+            <div className="hidden md:block absolute top-8 left-1/2 -translate-x-1/2 w-2/3 h-px bg-border" />
+            
+            <div className="grid md:grid-cols-3 gap-12 md:gap-8">
+              {[
+                {
+                  step: "01",
+                  title: "The Interview",
+                  description: "A free 15-minute AI conversation to understand your situation. We'll map out what's really going on.",
+                  note: "Free, no commitment"
+                },
+                {
+                  step: "02",
+                  title: "The Coaching",
+                  description: "Three focused modules tailored to your situation. Not generic advice—specific to you.",
+                  note: "Personalized curriculum"
+                },
+                {
+                  step: "03",
+                  title: "The Plan",
+                  description: "Walk away with scripts, timelines, and decision frameworks. Everything you need to act.",
+                  note: "Concrete deliverables"
+                }
+              ].map((step, index) => (
+                <div key={index} className="relative text-center md:text-left">
+                  <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-secondary text-secondary-foreground font-display text-lg mb-6 relative z-10">
+                    {step.step}
+                  </div>
                   <h3 className="font-display text-xl mb-3">{step.title}</h3>
-                  <p className="text-muted-foreground leading-relaxed mb-2">
+                  <p className="text-muted-foreground text-sm mb-3 leading-relaxed">
                     {step.description}
                   </p>
-                  <p className="text-sm text-primary italic">{step.note}</p>
+                  <p className="sp-eyebrow text-primary">{step.note}</p>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Ornamental divider */}
-      <div className="sp-rule-ornament">❧</div>
-
       {/* Social proof */}
-      <section className="sp-container sp-section-sm">
-        <div className="max-w-xl mx-auto">
-          <div className="flex items-center justify-center gap-12 text-center">
+      <section className="border-t border-border">
+        <div className="sp-container sp-section-sm">
+          <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16 text-center">
             <div>
-              <p className="font-display text-3xl text-foreground mb-1">500+</p>
-              <p className="text-xs text-muted-foreground uppercase tracking-wider">Sessions</p>
+              <p className="font-display text-3xl mb-1">500+</p>
+              <p className="text-sm text-muted-foreground">Coaching sessions</p>
             </div>
-            <div className="text-primary/40">•</div>
+            <div className="hidden md:block w-px h-12 bg-border" />
             <div>
-              <p className="font-display text-3xl text-foreground mb-1">4.9</p>
-              <p className="text-xs text-muted-foreground uppercase tracking-wider">Rating</p>
+              <p className="font-display text-3xl mb-1">4.9/5</p>
+              <p className="text-sm text-muted-foreground">Average rating</p>
             </div>
-            <div className="text-primary/40">•</div>
+            <div className="hidden md:block w-px h-12 bg-border" />
             <div>
-              <p className="font-display text-3xl text-foreground mb-1">VP+</p>
-              <p className="text-xs text-muted-foreground uppercase tracking-wider">Level</p>
+              <p className="font-display text-3xl mb-1">VP+</p>
+              <p className="text-sm text-muted-foreground">Senior professionals</p>
             </div>
           </div>
         </div>
@@ -229,19 +227,21 @@ const Landing = () => {
 
       {/* CTA Section */}
       <section className="sp-container sp-section border-t border-border">
-        <div className="max-w-lg mx-auto text-center">
-          <p className="sp-chapter">Begin</p>
-          <h2 className="text-balance mb-4">
-            Ready to think clearly?
+        <div className="max-w-content-narrow mx-auto text-center">
+          <h2 className="font-display text-balance mb-6">
+            Ready to think clearly about your career?
           </h2>
-          <p className="text-muted-foreground mb-8">
+          <p className="text-muted-foreground mb-8 max-w-md mx-auto">
             Start with a free interview. In 15 minutes, you'll have more clarity than months of ruminating.
           </p>
-          <button className="sp-btn sp-btn-primary group">
-            Start your free interview
+          <Button 
+            size="lg" 
+            className="group bg-foreground text-background hover:bg-foreground/90 px-10 h-12 text-base"
+          >
+            Start free interview
             <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-          </button>
-          <p className="mt-4 text-xs text-muted-foreground italic">
+          </Button>
+          <p className="mt-4 text-xs text-muted-foreground">
             No credit card required
           </p>
         </div>
@@ -249,9 +249,9 @@ const Landing = () => {
 
       {/* Footer */}
       <footer className="border-t border-border">
-        <div className="sp-container py-10">
+        <div className="sp-container py-12">
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-            <div className="font-display italic">Serious People</div>
+            <div className="font-display text-lg">Serious People</div>
             <div className="flex items-center gap-8">
               <a href="/guides" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
                 Guides
