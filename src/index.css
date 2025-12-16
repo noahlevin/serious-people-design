@@ -16,6 +16,10 @@
  */
 
 @layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
   :root {
     /* Paper & Ink - The Foundation */
     --background: 40 33% 97%;           /* Warm ivory paper #FAF8F5 */

@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Menu, X } from "lucide-react";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
-import { useFloatingParallax } from "@/hooks/useParallax";
 import situationIcons from "@/components/graphics/SituationIcons";
 import ProcessPath from "@/components/graphics/ProcessPath";
 
@@ -19,7 +18,6 @@ const Landing = () => {
   const [currentSituation, setCurrentSituation] = useState(0);
   const [isVisible, setIsVisible] = useState(true);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const parallax = useFloatingParallax(0.15);
 
   // Scroll reveal hooks for each section
   const heroReveal = useScrollReveal();
@@ -432,11 +430,6 @@ const Landing = () => {
 
       {/* CTA Section */}
       <section className="sp-container sp-section border-t border-border relative">
-        {/* Decorative parallax element */}
-        <div 
-          className="absolute bottom-0 right-1/4 w-72 h-72 rounded-full bg-sage-wash opacity-50 blur-3xl pointer-events-none"
-          style={{ transform: `translateY(${parallax.medium}px)` }}
-        />
         
         <div 
           ref={ctaReveal.ref}
