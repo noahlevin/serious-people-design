@@ -35,9 +35,9 @@ const ChatInput = ({ onSend, disabled = false, placeholder = "Type your response
   }, [message]);
 
   return (
-    <div className="border-t border-border bg-background p-4">
+    <div className="border-t border-border bg-background px-2 py-3">
       <div className="max-w-2xl mx-auto">
-        <div className="flex items-end gap-2 bg-sage-wash/20 rounded-2xl px-4 py-2">
+        <div className="flex items-end gap-2 bg-sage-wash/20 rounded-2xl px-3 py-2">
           <textarea
             ref={textareaRef}
             value={message}
@@ -46,7 +46,7 @@ const ChatInput = ({ onSend, disabled = false, placeholder = "Type your response
             placeholder={placeholder}
             disabled={disabled}
             rows={1}
-            className="flex-1 bg-transparent border-none outline-none resize-none text-foreground placeholder:text-muted-foreground text-[15px] leading-snug min-h-[24px] max-h-[120px] py-1"
+            className="flex-1 bg-transparent border-none outline-none resize-none font-chat text-foreground placeholder:text-muted-foreground text-[15px] leading-relaxed min-h-[24px] max-h-[120px] py-1"
           />
           <Button
             size="icon"

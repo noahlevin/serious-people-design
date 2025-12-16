@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { X } from "lucide-react";
 import ChatMessage from "@/components/interview/ChatMessage";
 import ChatInput from "@/components/interview/ChatInput";
-import ProgressBar from "@/components/interview/ProgressBar";
+
 import { Message, initialMessage, mockResponses, interviewQuestions } from "@/data/mockInterview";
 
 const InterviewChat = () => {
@@ -81,20 +81,12 @@ const InterviewChat = () => {
   return (
     <div className="h-screen flex flex-col bg-background">
       {/* Header */}
-      <header className="border-b border-border shrink-0">
+      <header className="shrink-0">
         <div className="sp-container">
           <div className="flex items-center justify-between h-16 gap-4">
             <Link to="/" className="font-display text-xl tracking-tight text-foreground shrink-0">
               Serious People
             </Link>
-            
-            <div className="flex-1 max-w-xs hidden sm:block">
-              <ProgressBar 
-                current={questionIndex} 
-                total={totalQuestions}
-                label="Progress"
-              />
-            </div>
             
             <Button 
               variant="ghost" 
@@ -108,11 +100,11 @@ const InterviewChat = () => {
           </div>
         </div>
         
-        {/* Mobile progress bar */}
-        <div className="sm:hidden px-4 pb-3">
-          <ProgressBar 
-            current={questionIndex} 
-            total={totalQuestions}
+        {/* Progress bar as the separator line */}
+        <div className="h-[2px] bg-border relative">
+          <div 
+            className="absolute top-0 left-0 h-full bg-accent transition-all duration-500 ease-out"
+            style={{ width: `${(questionIndex / totalQuestions) * 100}%` }}
           />
         </div>
       </header>
