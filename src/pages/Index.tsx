@@ -69,7 +69,7 @@ const Landing = () => {
               Career coaching for senior professionals
             </p>
             
-            <h1 className="font-display text-balance mb-8">
+            <h1 className="font-display text-4xl md:text-5xl lg:text-6xl text-balance mb-8">
               You're{" "}
               <span 
                 className={`text-primary inline-block transition-all duration-500 ${
