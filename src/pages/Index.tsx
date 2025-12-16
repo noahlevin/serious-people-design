@@ -148,7 +148,7 @@ const Landing = () => {
       </section>
 
       {/* Pull Quote Section - separate with different background */}
-      <section className="sp-section-sage border-t border-sage-light">
+      <section className="border-t border-border">
         <div className="sp-container py-16 md:py-20">
           <div 
             ref={quoteReveal.ref}
