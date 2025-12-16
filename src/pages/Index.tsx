@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Menu, X } from "lucide-react";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { useFloatingParallax } from "@/hooks/useParallax";
 import situationIcons from "@/components/graphics/SituationIcons";
@@ -18,6 +18,7 @@ const situations = [
 const Landing = () => {
   const [currentSituation, setCurrentSituation] = useState(0);
   const [isVisible, setIsVisible] = useState(true);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const parallax = useFloatingParallax(0.15);
 
   // Scroll reveal hooks for each section
@@ -47,7 +48,9 @@ const Landing = () => {
         <div className="font-display text-xl tracking-tight hover:text-primary transition-colors duration-300 cursor-pointer">
           Serious People
         </div>
-        <div className="flex items-center gap-8">
+        
+        {/* Desktop navigation */}
+        <div className="hidden md:flex items-center gap-8">
           <a href="/guides" className="sp-link text-sm text-muted-foreground hover:text-foreground transition-colors">
             Guides
           </a>
@@ -59,7 +62,33 @@ const Landing = () => {
             <span className="absolute -bottom-1 left-0 w-0 h-px bg-primary transition-all duration-300 group-hover:w-full" />
           </a>
         </div>
+        
+        {/* Mobile hamburger button */}
+        <button 
+          className="md:hidden p-2 -mr-2 text-foreground"
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          aria-label="Toggle menu"
+        >
+          {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+        </button>
       </nav>
+      
+      {/* Mobile menu */}
+      {mobileMenuOpen && (
+        <div className="md:hidden border-b border-border bg-background animate-fade-in">
+          <div className="sp-container py-4 flex flex-col gap-4">
+            <a href="/guides" className="text-sm text-muted-foreground hover:text-foreground transition-colors py-2">
+              Guides
+            </a>
+            <a href="/resources" className="text-sm text-muted-foreground hover:text-foreground transition-colors py-2">
+              Resources
+            </a>
+            <a href="/login" className="text-sm font-medium hover:text-primary transition-colors py-2">
+              Log in
+            </a>
+          </div>
+        </div>
+      )}
 
       {/* Hero - Asymmetric Layout */}
       <section className="sp-container sp-section relative">
@@ -115,20 +144,24 @@ const Landing = () => {
             </div>
           </div>
           
-          {/* Pull quote - redesigned elegant style */}
+        </div>
+      </section>
+
+      {/* Pull Quote Section - separate with different background */}
+      <section className="sp-section-sage border-t border-sage-light">
+        <div className="sp-container py-16 md:py-20">
           <div 
             ref={quoteReveal.ref}
-            className={`lg:col-span-4 lg:col-start-9 lg:mt-24 reveal-right ${quoteReveal.isRevealed ? "revealed" : ""}`}
-            style={{ transitionDelay: "0.2s" }}
+            className={`max-w-content-medium mx-auto reveal ${quoteReveal.isRevealed ? "revealed" : ""}`}
           >
-            <div className="sp-quote-elegant">
-              <blockquote>
+            <div className="sp-quote-elegant text-center">
+              <blockquote className="text-xl md:text-2xl">
                 I spent months going in circles. One hour with this process gave me more clarity than a year of overthinking.
               </blockquote>
-              <cite>
+              <cite className="mt-6 block">
                 <span className="text-foreground font-medium">— VP of Engineering</span>
-                <br />
-                Series C startup
+                <span className="mx-2 text-muted-foreground">·</span>
+                <span className="text-muted-foreground">Series C startup</span>
               </cite>
             </div>
           </div>
@@ -224,7 +257,7 @@ const Landing = () => {
           
           <div className="relative min-h-[300px]">
             {/* Connected path illustration */}
-            <ProcessPath isRevealed={processReveal.isRevealed} />
+            <ProcessPath />
             
             <div className="grid md:grid-cols-3 gap-12 md:gap-8 relative z-10 pt-20 lg:pt-32">
               {[
@@ -311,6 +344,92 @@ const Landing = () => {
         </div>
       </section>
 
+      {/* Why people pay section */}
+      <section className="sp-container sp-section border-t border-border">
+        <div className="grid lg:grid-cols-12 gap-12">
+          <div className="lg:col-span-4">
+            <p className="sp-eyebrow mb-4 text-primary">Why people pay</p>
+            <h2 className="font-display text-balance">
+              This isn't therapy. It's strategy.
+            </h2>
+          </div>
+          
+          <div className="lg:col-span-7 lg:col-start-6">
+            <div className="space-y-8">
+              {[
+                {
+                  title: "Speed",
+                  description: "Most people ruminate for months. Our clients get clarity in days. The AI interview alone surfaces insights that take weeks to reach in traditional coaching."
+                },
+                {
+                  title: "Specificity",
+                  description: "No generic frameworks. Every recommendation is tailored to your exact situation, company context, and career goals. Scripts, timelines, decision trees—ready to use."
+                },
+                {
+                  title: "Stakes",
+                  description: "At the VP+ level, career mistakes are expensive. A bad exit, a missed negotiation, or a wrong move can cost hundreds of thousands. This is insurance."
+                },
+                {
+                  title: "Discretion",
+                  description: "No paper trail. No HR involvement. No awkward conversations with colleagues. Just you, working through your situation with complete privacy."
+                }
+              ].map((item, index) => (
+                <div key={index} className="border-l-2 border-primary/20 pl-6 hover:border-primary transition-colors duration-300">
+                  <h3 className="font-display text-lg mb-2">{item.title}</h3>
+                  <p className="text-muted-foreground text-sm leading-relaxed">{item.description}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section className="sp-section-sage border-t border-sage-light">
+        <div className="sp-container py-16 md:py-24">
+          <div className="grid lg:grid-cols-12 gap-12">
+            <div className="lg:col-span-4">
+              <p className="sp-eyebrow mb-4 text-primary">FAQ</p>
+              <h2 className="font-display text-balance">
+                Common questions
+              </h2>
+            </div>
+            
+            <div className="lg:col-span-7 lg:col-start-6">
+              <div className="space-y-6">
+                {[
+                  {
+                    question: "Is this AI or human coaching?",
+                    answer: "Both. The initial interview and situation analysis are AI-powered, but the coaching sessions include human oversight and review. You get the speed and availability of AI with the judgment of experienced career coaches."
+                  },
+                  {
+                    question: "How is this different from talking to a friend or mentor?",
+                    answer: "Friends tell you what you want to hear. Mentors give advice based on their experience, not yours. We give you structured frameworks, specific scripts, and concrete action plans based on your exact situation and goals."
+                  },
+                  {
+                    question: "What if I'm not sure I want to leave?",
+                    answer: "Perfect. Most of our clients start unsure. The process is designed to help you think clearly, not push you in any direction. Many people decide to stay—but with a much clearer understanding of why."
+                  },
+                  {
+                    question: "How long does it take?",
+                    answer: "The free interview takes about 15 minutes. The full coaching program is three sessions over 1-2 weeks. Most clients have their complete action plan within 10 days."
+                  },
+                  {
+                    question: "Is this confidential?",
+                    answer: "Completely. We don't share any information with employers, and there's no record of your participation. Many clients specifically choose us because there's no HR involvement or paper trail."
+                  }
+                ].map((faq, index) => (
+                  <div key={index} className="border-b border-sage-light pb-6 last:border-b-0">
+                    <h3 className="font-display text-lg mb-3">{faq.question}</h3>
+                    <p className="text-muted-foreground text-sm leading-relaxed">{faq.answer}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* CTA Section */}
       <section className="sp-container sp-section border-t border-border relative">
         {/* Decorative parallax element */}
@@ -362,7 +481,7 @@ const Landing = () => {
               ))}
             </div>
             <p className="text-xs text-muted-foreground">
-              © 2024 Serious People
+              © 2025 Serious People
             </p>
           </div>
         </div>
