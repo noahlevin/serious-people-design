@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,500;0,7..72,600;1,7..72,400;1,7..72,500&family=Source+Sans+3:wght@400;500;600&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -6,118 +6,118 @@
 
 /* 
  * Serious People Design System
- * Aesthetic: "The Modernist" - Swiss-influenced, precision, systematic confidence
+ * Aesthetic: "The Analog" - warm, human, book-like, anti-digital
  * 
  * Color Philosophy:
- * - Pure white background (clinical clarity)
- * - True black text (maximum contrast)
- * - Electric blue accent (single bold statement)
- * - Grid-based, systematic spacing
+ * - Warm cream paper (like a quality book)
+ * - Rich brown ink (not harsh black)
+ * - Amber/gold accents (warmth, trust)
+ * - Sepia undertones throughout
  */
 
 @layer base {
   :root {
-    /* Pure & Precise - The Foundation */
-    --background: 0 0% 100%;              /* Pure white #FFFFFF */
-    --foreground: 0 0% 4%;                /* Near black #0A0A0A */
+    /* Warm Paper - The Foundation */
+    --background: 42 50% 96%;             /* Warm cream #FAF7F2 */
+    --foreground: 25 30% 18%;             /* Rich brown ink #3D2E24 */
     
     /* Surface Hierarchy */
-    --card: 0 0% 100%;
-    --card-foreground: 0 0% 4%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 4%;
+    --card: 40 40% 93%;                   /* Slightly deeper cream */
+    --card-foreground: 25 30% 18%;
+    --popover: 42 50% 96%;
+    --popover-foreground: 25 30% 18%;
     
-    /* Primary - Electric Blue (the statement) */
-    --primary: 217 100% 50%;              /* Electric blue #0066FF */
-    --primary-foreground: 0 0% 100%;
+    /* Primary - Warm Amber */
+    --primary: 32 80% 45%;                /* Rich amber #CC7A1A */
+    --primary-foreground: 42 50% 96%;
     
-    /* Secondary - Near Black */
-    --secondary: 0 0% 4%;
-    --secondary-foreground: 0 0% 100%;
+    /* Secondary - Soft Stone */
+    --secondary: 35 20% 88%;
+    --secondary-foreground: 25 30% 25%;
     
-    /* Muted - For secondary text */
-    --muted: 0 0% 96%;
-    --muted-foreground: 0 0% 45%;
+    /* Muted - Sepia tones */
+    --muted: 35 25% 91%;
+    --muted-foreground: 25 15% 50%;
     
-    /* Accent - Same as primary for consistency */
-    --accent: 217 100% 50%;
-    --accent-foreground: 0 0% 100%;
+    /* Accent - Deep Burgundy */
+    --accent: 0 40% 35%;                  /* Warm burgundy */
+    --accent-foreground: 42 50% 96%;
     
     /* Functional */
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 0 0% 100%;
+    --destructive: 0 65% 45%;
+    --destructive-foreground: 42 50% 96%;
     
-    /* Borders - Light, precise */
-    --border: 0 0% 90%;
-    --input: 0 0% 90%;
-    --ring: 217 100% 50%;
+    /* Borders - Soft, warm */
+    --border: 35 20% 85%;
+    --input: 35 20% 85%;
+    --ring: 32 80% 45%;
     
-    --radius: 0;                          /* Zero radius - Modernist */
+    --radius: 0.125rem;                   /* Barely there - book-like */
     
     /* Sidebar */
-    --sidebar-background: 0 0% 98%;
-    --sidebar-foreground: 0 0% 4%;
-    --sidebar-primary: 217 100% 50%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 0 0% 96%;
-    --sidebar-accent-foreground: 0 0% 4%;
-    --sidebar-border: 0 0% 90%;
-    --sidebar-ring: 217 100% 50%;
+    --sidebar-background: 40 35% 94%;
+    --sidebar-foreground: 25 30% 25%;
+    --sidebar-primary: 32 80% 45%;
+    --sidebar-primary-foreground: 42 50% 96%;
+    --sidebar-accent: 35 25% 88%;
+    --sidebar-accent-foreground: 25 30% 25%;
+    --sidebar-border: 35 20% 85%;
+    --sidebar-ring: 32 80% 45%;
     
     /* Custom tokens */
-    --sp-display: 'Space Grotesk', -apple-system, sans-serif;
-    --sp-body: 'Inter', -apple-system, sans-serif;
+    --sp-display: 'Literata', Georgia, serif;
+    --sp-body: 'Source Sans 3', -apple-system, sans-serif;
     
-    /* 8px base unit spacing */
-    --sp-space-xs: 0.5rem;      /* 8px */
-    --sp-space-sm: 1rem;        /* 16px */
-    --sp-space-md: 1.5rem;      /* 24px */
-    --sp-space-lg: 2rem;        /* 32px */
-    --sp-space-xl: 4rem;        /* 64px */
-    --sp-space-2xl: 7.5rem;     /* 120px */
+    /* Generous, book-like spacing */
+    --sp-space-xs: 0.5rem;
+    --sp-space-sm: 1rem;
+    --sp-space-md: 1.5rem;
+    --sp-space-lg: 2.5rem;
+    --sp-space-xl: 4rem;
+    --sp-space-2xl: 6rem;
     
-    /* Content widths */
-    --sp-content-narrow: 36rem;
-    --sp-content-medium: 48rem;
-    --sp-content-wide: 75rem;   /* 1200px */
+    /* Content widths - narrower, more readable */
+    --sp-content-narrow: 32rem;
+    --sp-content-medium: 42rem;
+    --sp-content-wide: 60rem;
   }
 
   .dark {
-    --background: 0 0% 4%;
-    --foreground: 0 0% 96%;
+    --background: 25 25% 10%;
+    --foreground: 40 30% 88%;
     
-    --card: 0 0% 8%;
-    --card-foreground: 0 0% 96%;
-    --popover: 0 0% 4%;
-    --popover-foreground: 0 0% 96%;
+    --card: 25 20% 14%;
+    --card-foreground: 40 30% 88%;
+    --popover: 25 25% 10%;
+    --popover-foreground: 40 30% 88%;
     
-    --primary: 217 100% 60%;
-    --primary-foreground: 0 0% 4%;
+    --primary: 35 75% 55%;
+    --primary-foreground: 25 25% 10%;
     
-    --secondary: 0 0% 96%;
-    --secondary-foreground: 0 0% 4%;
+    --secondary: 25 15% 20%;
+    --secondary-foreground: 40 25% 80%;
     
-    --muted: 0 0% 15%;
-    --muted-foreground: 0 0% 60%;
+    --muted: 25 15% 18%;
+    --muted-foreground: 35 15% 55%;
     
-    --accent: 217 100% 60%;
-    --accent-foreground: 0 0% 4%;
+    --accent: 0 35% 50%;
+    --accent-foreground: 25 25% 10%;
     
-    --destructive: 0 70% 50%;
-    --destructive-foreground: 0 0% 96%;
+    --destructive: 0 55% 45%;
+    --destructive-foreground: 40 30% 88%;
     
-    --border: 0 0% 20%;
-    --input: 0 0% 20%;
-    --ring: 217 100% 60%;
+    --border: 25 15% 22%;
+    --input: 25 15% 22%;
+    --ring: 35 75% 55%;
     
-    --sidebar-background: 0 0% 6%;
-    --sidebar-foreground: 0 0% 90%;
-    --sidebar-primary: 217 100% 60%;
-    --sidebar-primary-foreground: 0 0% 4%;
-    --sidebar-accent: 0 0% 12%;
-    --sidebar-accent-foreground: 0 0% 90%;
-    --sidebar-border: 0 0% 20%;
-    --sidebar-ring: 217 100% 60%;
+    --sidebar-background: 25 20% 12%;
+    --sidebar-foreground: 40 25% 80%;
+    --sidebar-primary: 35 75% 55%;
+    --sidebar-primary-foreground: 25 25% 10%;
+    --sidebar-accent: 25 15% 18%;
+    --sidebar-accent-foreground: 40 25% 80%;
+    --sidebar-border: 25 15% 22%;
+    --sidebar-ring: 35 75% 55%;
   }
 }
 
@@ -127,7 +127,7 @@
   }
   
   html {
-    font-size: 16px;
+    font-size: 18px;  /* Slightly larger base for readability */
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
@@ -135,125 +135,135 @@
   body {
     @apply bg-background text-foreground;
     font-family: var(--sp-body);
-    line-height: 1.65;
+    line-height: 1.7;
   }
   
-  /* Typography Scale - Modernist */
+  /* Typography Scale - Humanist, book-like */
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--sp-display);
-    font-weight: 700;
-    line-height: 1.1;
-    letter-spacing: -0.03em;
+    font-weight: 500;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
   }
   
   h1 {
-    @apply text-5xl md:text-6xl lg:text-7xl;
+    @apply text-3xl md:text-4xl lg:text-5xl;
+    font-weight: 400;
   }
   
   h2 {
-    @apply text-3xl md:text-4xl lg:text-5xl;
-    font-weight: 500;
-    letter-spacing: -0.02em;
+    @apply text-2xl md:text-3xl;
+    font-weight: 400;
   }
   
   h3 {
     @apply text-xl md:text-2xl;
     font-weight: 500;
-    letter-spacing: -0.01em;
   }
   
   p {
-    @apply text-base md:text-lg;
-    line-height: 1.65;
+    @apply text-base;
+    line-height: 1.8;
   }
 }
 
 @layer components {
-  /* Container - 1200px max, generous gutters */
+  /* Container - Narrow, centered, book-like margins */
   .sp-container {
-    @apply mx-auto px-6 md:px-8 lg:px-12;
+    @apply mx-auto px-8 md:px-12 lg:px-16;
     max-width: var(--sp-content-wide);
   }
   
   .sp-container-narrow {
-    @apply mx-auto px-6 md:px-8;
+    @apply mx-auto px-8 md:px-12;
     max-width: var(--sp-content-narrow);
   }
   
   .sp-container-medium {
-    @apply mx-auto px-6 md:px-8;
+    @apply mx-auto px-8 md:px-12;
     max-width: var(--sp-content-medium);
   }
   
-  /* Section spacing - generous 120px */
+  /* Section spacing - generous, breathing room */
   .sp-section {
-    @apply py-20 md:py-24 lg:py-32;
+    @apply py-16 md:py-20 lg:py-28;
   }
   
   .sp-section-sm {
-    @apply py-12 md:py-16;
+    @apply py-10 md:py-14;
   }
   
-  /* Section marker - "01 — SECTION" style */
-  .sp-marker {
-    @apply text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground flex items-center gap-3;
-  }
-  
-  .sp-marker-line {
-    @apply h-px w-8 bg-border;
-  }
-  
-  /* Large background number */
-  .sp-bg-number {
+  /* Chapter marker - book-like */
+  .sp-chapter {
     font-family: var(--sp-display);
-    @apply text-[8rem] md:text-[12rem] font-bold text-muted/30 leading-none select-none;
-    letter-spacing: -0.05em;
+    @apply text-xs italic text-muted-foreground mb-2;
   }
   
-  /* Horizontal rule divider */
+  /* Drop cap for first paragraph */
+  .sp-dropcap::first-letter {
+    font-family: var(--sp-display);
+    @apply float-left text-5xl md:text-6xl font-normal mr-3 mt-1 text-primary;
+    line-height: 0.8;
+  }
+  
+  /* Horizontal rule - subtle, ornamental */
   .sp-rule {
-    @apply h-px w-full bg-foreground/10;
+    @apply h-px w-24 mx-auto bg-border;
   }
   
-  .sp-rule-bold {
-    @apply h-px w-full bg-foreground;
+  .sp-rule-ornament {
+    @apply flex items-center justify-center gap-4 text-muted-foreground/40;
   }
   
-  /* Modernist card - bordered, sharp */
+  .sp-rule-ornament::before,
+  .sp-rule-ornament::after {
+    content: '';
+    @apply h-px w-16 bg-border;
+  }
+  
+  /* Pull quote - editorial */
+  .sp-quote {
+    font-family: var(--sp-display);
+    font-style: italic;
+    @apply text-xl md:text-2xl text-foreground/80 text-center;
+    line-height: 1.5;
+  }
+  
+  /* Card - soft, warm */
   .sp-card {
-    @apply border border-foreground/20 p-6 md:p-8 transition-all duration-300;
+    @apply bg-card/50 border border-border/60 p-6 md:p-8 transition-all duration-300;
   }
   
   .sp-card:hover {
-    @apply bg-foreground text-background border-foreground;
+    @apply bg-card border-primary/30 shadow-sm;
   }
   
-  /* Button styles */
+  /* Button styles - warm, inviting */
   .sp-btn {
-    font-family: var(--sp-display);
-    @apply inline-flex items-center justify-center px-8 py-4 text-sm font-medium tracking-wide transition-all duration-200;
+    font-family: var(--sp-body);
+    @apply inline-flex items-center justify-center px-6 py-3 text-sm font-medium transition-all duration-200;
   }
   
   .sp-btn-primary {
-    @apply bg-foreground text-background hover:bg-foreground/90;
+    @apply bg-primary text-primary-foreground hover:bg-primary/90;
   }
   
   .sp-btn-secondary {
-    @apply border-2 border-foreground bg-transparent text-foreground hover:bg-foreground hover:text-background;
+    @apply border border-foreground/30 bg-transparent text-foreground hover:border-foreground hover:bg-foreground/5;
   }
   
   .sp-btn-ghost {
-    @apply text-foreground underline underline-offset-4 hover:text-primary;
+    @apply text-primary underline underline-offset-4 decoration-primary/40 hover:decoration-primary;
   }
   
-  /* Link with underline animation */
+  /* Link with subtle animation */
   .sp-link {
-    @apply relative inline-block;
+    @apply relative inline-block text-foreground;
   }
   
   .sp-link::after {
     content: '';
-    @apply absolute bottom-0 left-0 w-full h-px bg-foreground;
+    @apply absolute bottom-0 left-0 w-full h-px bg-primary/50;
     transform: scaleX(0);
     transform-origin: right;
     transition: transform 0.3s ease;
@@ -266,28 +276,27 @@
   
   /* Eyebrow/label text */
   .sp-eyebrow {
-    @apply text-xs font-medium uppercase tracking-[0.15em] text-muted-foreground;
+    font-family: var(--sp-body);
+    @apply text-xs font-medium uppercase tracking-widest text-muted-foreground;
   }
   
-  /* Vertical divider */
-  .sp-divider-v {
-    @apply w-px h-full bg-foreground/20;
+  /* Ornamental divider */
+  .sp-ornament {
+    @apply text-2xl text-primary/60 text-center select-none;
   }
   
-  /* Stat display */
-  .sp-stat {
-    font-family: var(--sp-display);
-    @apply text-5xl md:text-6xl font-bold tracking-tight;
+  /* List with custom markers */
+  .sp-list {
+    @apply space-y-3;
   }
   
-  /* Inverted section */
-  .sp-inverted {
-    @apply bg-foreground text-background;
+  .sp-list li {
+    @apply relative pl-6;
   }
   
-  .sp-inverted .sp-eyebrow,
-  .sp-inverted .sp-marker {
-    @apply text-background/60;
+  .sp-list li::before {
+    content: '—';
+    @apply absolute left-0 text-primary/60;
   }
 }
 
@@ -299,25 +308,25 @@
   
   /* Fade in animation */
   .animate-fade-in {
-    animation: fadeIn 0.6s ease-out forwards;
+    animation: fadeIn 0.8s ease-out forwards;
   }
   
   .animate-fade-in-up {
-    animation: fadeInUp 0.6s ease-out forwards;
+    animation: fadeInUp 0.8s ease-out forwards;
   }
   
   /* Stagger children */
   .stagger-children > * {
     opacity: 0;
-    animation: fadeInUp 0.5s ease-out forwards;
+    animation: fadeInUp 0.6s ease-out forwards;
   }
   
-  .stagger-children > *:nth-child(1) { animation-delay: 0.1s; }
-  .stagger-children > *:nth-child(2) { animation-delay: 0.2s; }
-  .stagger-children > *:nth-child(3) { animation-delay: 0.3s; }
-  .stagger-children > *:nth-child(4) { animation-delay: 0.4s; }
-  .stagger-children > *:nth-child(5) { animation-delay: 0.5s; }
-  .stagger-children > *:nth-child(6) { animation-delay: 0.6s; }
+  .stagger-children > *:nth-child(1) { animation-delay: 0.15s; }
+  .stagger-children > *:nth-child(2) { animation-delay: 0.3s; }
+  .stagger-children > *:nth-child(3) { animation-delay: 0.45s; }
+  .stagger-children > *:nth-child(4) { animation-delay: 0.6s; }
+  .stagger-children > *:nth-child(5) { animation-delay: 0.75s; }
+  .stagger-children > *:nth-child(6) { animation-delay: 0.9s; }
   
   /* Display font utility */
   .font-display {
@@ -327,15 +336,6 @@
   /* Body font utility */
   .font-body {
     font-family: var(--sp-body);
-  }
-  
-  /* Tracking utilities */
-  .tracking-modernist {
-    letter-spacing: -0.03em;
-  }
-  
-  .tracking-wide-caps {
-    letter-spacing: 0.2em;
   }
 }
 
@@ -351,7 +351,7 @@
 @keyframes fadeInUp {
   from {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(16px);
   }
   to {
     opacity: 1;

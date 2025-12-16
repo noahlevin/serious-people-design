@@ -1,93 +1,120 @@
-import { Button } from "@/components/ui/button";
+import { useState, useEffect } from "react";
 import { ArrowRight } from "lucide-react";
 
+const situations = [
+  "wondering if it's time to leave",
+  "dealing with a difficult manager",
+  "burned out but unsure what's next",
+  "negotiating your exit",
+  "considering a counter-offer",
+  "stuck between two opportunities",
+];
+
 const Landing = () => {
+  const [currentSituation, setCurrentSituation] = useState(0);
+  const [isVisible, setIsVisible] = useState(true);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIsVisible(false);
+      setTimeout(() => {
+        setCurrentSituation((prev) => (prev + 1) % situations.length);
+        setIsVisible(true);
+      }, 500);
+    }, 4000);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <div className="min-h-screen bg-background">
-      {/* Navigation */}
-      <nav className="sp-container py-6 flex items-center justify-between border-b border-border">
-        <div className="font-display text-sm font-medium uppercase tracking-[0.15em]">
+      {/* Navigation - Simple, understated */}
+      <nav className="sp-container py-8 flex items-center justify-between">
+        <div className="font-display text-lg italic">
           Serious People
         </div>
         <div className="flex items-center gap-8">
-          <a href="/guides" className="sp-link text-xs uppercase tracking-[0.1em] text-muted-foreground hover:text-foreground transition-colors">
+          <a href="/guides" className="sp-link text-sm text-muted-foreground hover:text-foreground transition-colors">
             Guides
           </a>
-          <a href="/resources" className="sp-link text-xs uppercase tracking-[0.1em] text-muted-foreground hover:text-foreground transition-colors">
+          <a href="/resources" className="sp-link text-sm text-muted-foreground hover:text-foreground transition-colors">
             Resources
           </a>
-          <a href="/login" className="text-xs uppercase tracking-[0.1em] font-medium hover:text-primary transition-colors">
+          <a href="/login" className="text-sm font-medium text-primary hover:text-primary/80 transition-colors">
             Log in
           </a>
         </div>
       </nav>
 
-      {/* Hero - Bold Modernist */}
-      <section className="sp-container sp-section relative">
-        {/* Background number */}
-        <div className="absolute top-0 right-0 sp-bg-number hidden lg:block">
-          01
-        </div>
-        
-        <div className="relative z-10 max-w-4xl">
-          <div className="sp-marker mb-8 animate-fade-in">
-            <span className="sp-marker-line" />
-            <span>Career coaching for senior professionals</span>
-          </div>
+      {/* Hero - Book-like, centered, intimate */}
+      <section className="sp-container sp-section">
+        <div className="max-w-2xl mx-auto text-center">
+          <p className="sp-chapter animate-fade-in">
+            A guide for senior professionals
+          </p>
           
           <h1 className="text-balance mb-8 animate-fade-in-up" style={{ animationDelay: "0.1s" }}>
-            Career decisions
-            <br />
-            for serious people.
+            You're{" "}
+            <span 
+              className={`text-primary transition-opacity duration-500 ${isVisible ? "opacity-100" : "opacity-0"}`}
+            >
+              {situations[currentSituation]}
+            </span>
           </h1>
           
-          <p className="text-xl md:text-2xl text-muted-foreground max-w-2xl mb-12 animate-fade-in-up leading-relaxed" style={{ animationDelay: "0.2s" }}>
+          <p className="text-lg text-muted-foreground mb-10 animate-fade-in-up leading-relaxed" style={{ animationDelay: "0.2s" }}>
             A structured coaching experience that helps you think clearly about 
             your career—and leave with a concrete plan, not vague advice.
           </p>
           
-          <div className="flex flex-col sm:flex-row gap-4 animate-fade-in-up" style={{ animationDelay: "0.3s" }}>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-in-up" style={{ animationDelay: "0.3s" }}>
             <button className="sp-btn sp-btn-primary group">
-              Start free interview
-              <ArrowRight className="ml-3 h-4 w-4 transition-transform group-hover:translate-x-1" />
+              Start your free interview
+              <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
             </button>
-            <button className="sp-btn sp-btn-secondary">
+            <button className="sp-btn sp-btn-ghost">
               See how it works
             </button>
           </div>
         </div>
       </section>
 
-      <div className="sp-container">
-        <div className="sp-rule" />
-      </div>
+      {/* Ornamental divider */}
+      <div className="sp-rule-ornament">❧</div>
+
+      {/* Pull Quote */}
+      <section className="sp-container sp-section-sm">
+        <div className="max-w-xl mx-auto">
+          <blockquote className="sp-quote">
+            "I spent months going in circles. One hour with this process gave me more clarity than a year of overthinking."
+          </blockquote>
+          <p className="mt-6 text-center text-sm text-muted-foreground italic">
+            — VP of Engineering, Series C startup
+          </p>
+        </div>
+      </section>
+
+      {/* Ornamental divider */}
+      <div className="sp-rule-ornament">❧</div>
 
       {/* Situations Section */}
-      <section className="sp-container sp-section relative">
-        {/* Background number */}
-        <div className="absolute top-0 left-0 sp-bg-number hidden lg:block">
-          02
-        </div>
-        
-        <div className="relative z-10">
-          <div className="sp-marker mb-6">
-            <span>02</span>
-            <span className="sp-marker-line" />
-            <span>Situations</span>
-          </div>
-          
-          <h2 className="text-balance mb-16 max-w-xl">
+      <section className="sp-container sp-section">
+        <div className="max-w-3xl mx-auto">
+          <p className="sp-chapter text-center">Chapter One</p>
+          <h2 className="text-balance text-center mb-4">
             What brings people here
           </h2>
+          <p className="text-center text-muted-foreground mb-12 max-w-lg mx-auto">
+            These are the moments when career decisions feel weightiest—when you need thinking, not just advice.
+          </p>
           
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 stagger-children">
+          <div className="grid md:grid-cols-2 gap-6 stagger-children">
             {[
               {
                 title: "Stay or go?",
                 description: "You've been thinking about leaving for months, but can't decide if it's the right move."
               },
               {
-                title: "Bad manager",
+                title: "A difficult manager",
                 description: "Your boss is making your life difficult. You're not sure if it's fixable or time to exit."
               },
               {
@@ -99,19 +126,19 @@ const Landing = () => {
                 description: "You've decided to leave. Now you need to navigate the conversation without burning bridges."
               },
               {
-                title: "Counter-offer dilemma",
+                title: "The counter-offer",
                 description: "They matched your offer. Now you're second-guessing everything."
               },
               {
-                title: "Two opportunities",
+                title: "Two paths",
                 description: "You have options, but comparing them feels impossible. Different roles, different tradeoffs."
               }
             ].map((situation, index) => (
               <div 
                 key={index} 
-                className="sp-card cursor-pointer"
+                className="sp-card"
               >
-                <h3 className="font-display text-lg mb-3">
+                <h3 className="font-display text-lg mb-2">
                   {situation.title}
                 </h3>
                 <p className="text-sm text-muted-foreground leading-relaxed">
@@ -123,125 +150,116 @@ const Landing = () => {
         </div>
       </section>
 
-      <div className="sp-container">
-        <div className="sp-rule" />
-      </div>
+      {/* Ornamental divider */}
+      <div className="sp-rule-ornament">❧</div>
 
       {/* How it works */}
-      <section className="sp-container sp-section relative">
-        {/* Background number */}
-        <div className="absolute top-0 right-0 sp-bg-number hidden lg:block">
-          03
-        </div>
-        
-        <div className="relative z-10">
-          <div className="sp-marker mb-6">
-            <span>03</span>
-            <span className="sp-marker-line" />
-            <span>Process</span>
-          </div>
-          
-          <h2 className="text-balance mb-16 max-w-lg">
+      <section className="sp-container sp-section">
+        <div className="max-w-2xl mx-auto">
+          <p className="sp-chapter text-center">Chapter Two</p>
+          <h2 className="text-balance text-center mb-4">
             Three sessions. One clear plan.
           </h2>
+          <p className="text-center text-muted-foreground mb-12">
+            A simple process designed to cut through the noise.
+          </p>
           
-          <div className="grid md:grid-cols-3 gap-0">
+          <div className="space-y-12">
             {[
               {
-                step: "01",
+                step: "I",
                 title: "The Interview",
-                description: "A free 15-minute AI conversation to understand your situation. We'll map out what's really going on.",
+                description: "A free 15-minute AI conversation to understand your situation. We'll map out what's really going on—the facts, the feelings, and the forces at play.",
                 note: "Free, no commitment"
               },
               {
-                step: "02",
+                step: "II",
                 title: "The Coaching",
-                description: "Three focused modules tailored to your situation. Not generic advice—specific to you.",
-                note: "Personalized curriculum"
+                description: "Three focused modules tailored to your situation. Not generic advice you could find in a book—specific guidance for your circumstances.",
+                note: "Personalized to you"
               },
               {
-                step: "03",
+                step: "III",
                 title: "The Plan",
-                description: "Walk away with scripts, timelines, and decision frameworks. Everything you need to act.",
+                description: "Walk away with scripts for difficult conversations, realistic timelines, and decision frameworks. Everything you need to act with confidence.",
                 note: "Concrete deliverables"
               }
             ].map((step, index) => (
-              <div 
-                key={index} 
-                className={`p-8 ${index !== 2 ? 'md:border-r border-border' : ''}`}
-              >
-                <span className="font-display text-6xl md:text-7xl font-bold text-muted/30 leading-none mb-6 block">
-                  {step.step}
-                </span>
-                <h3 className="font-display text-xl mb-4">{step.title}</h3>
-                <p className="text-muted-foreground text-sm mb-4 leading-relaxed">
-                  {step.description}
-                </p>
-                <p className="text-xs uppercase tracking-[0.1em] text-primary font-medium">
-                  {step.note}
-                </p>
+              <div key={index} className="flex gap-8">
+                <div className="flex-shrink-0">
+                  <span className="font-display text-3xl text-primary/60">{step.step}</span>
+                </div>
+                <div>
+                  <h3 className="font-display text-xl mb-3">{step.title}</h3>
+                  <p className="text-muted-foreground leading-relaxed mb-2">
+                    {step.description}
+                  </p>
+                  <p className="text-sm text-primary italic">{step.note}</p>
+                </div>
               </div>
             ))}
           </div>
         </div>
       </section>
 
+      {/* Ornamental divider */}
+      <div className="sp-rule-ornament">❧</div>
+
       {/* Social proof */}
-      <section className="border-t border-b border-border">
-        <div className="sp-container">
-          <div className="grid grid-cols-3 divide-x divide-border">
-            <div className="py-12 md:py-16 text-center">
-              <p className="sp-stat mb-2">500+</p>
-              <p className="text-xs uppercase tracking-[0.1em] text-muted-foreground">Sessions</p>
+      <section className="sp-container sp-section-sm">
+        <div className="max-w-xl mx-auto">
+          <div className="flex items-center justify-center gap-12 text-center">
+            <div>
+              <p className="font-display text-3xl text-foreground mb-1">500+</p>
+              <p className="text-xs text-muted-foreground uppercase tracking-wider">Sessions</p>
             </div>
-            <div className="py-12 md:py-16 text-center">
-              <p className="sp-stat mb-2">4.9</p>
-              <p className="text-xs uppercase tracking-[0.1em] text-muted-foreground">Rating</p>
+            <div className="text-primary/40">•</div>
+            <div>
+              <p className="font-display text-3xl text-foreground mb-1">4.9</p>
+              <p className="text-xs text-muted-foreground uppercase tracking-wider">Rating</p>
             </div>
-            <div className="py-12 md:py-16 text-center">
-              <p className="sp-stat mb-2">VP+</p>
-              <p className="text-xs uppercase tracking-[0.1em] text-muted-foreground">Level</p>
+            <div className="text-primary/40">•</div>
+            <div>
+              <p className="font-display text-3xl text-foreground mb-1">VP+</p>
+              <p className="text-xs text-muted-foreground uppercase tracking-wider">Level</p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* CTA Section - Inverted */}
-      <section className="sp-inverted">
-        <div className="sp-container sp-section">
-          <div className="max-w-2xl mx-auto text-center">
-            <h2 className="text-balance mb-6">
-              Ready to think clearly?
-            </h2>
-            <p className="text-background/70 mb-10 text-lg max-w-md mx-auto">
-              Start with a free interview. In 15 minutes, you'll have more clarity than months of ruminating.
-            </p>
-            <button className="sp-btn bg-background text-foreground hover:bg-background/90 group">
-              Start free interview
-              <ArrowRight className="ml-3 h-4 w-4 transition-transform group-hover:translate-x-1" />
-            </button>
-            <p className="mt-6 text-xs text-background/50 uppercase tracking-[0.1em]">
-              No credit card required
-            </p>
-          </div>
+      {/* CTA Section */}
+      <section className="sp-container sp-section border-t border-border">
+        <div className="max-w-lg mx-auto text-center">
+          <p className="sp-chapter">Begin</p>
+          <h2 className="text-balance mb-4">
+            Ready to think clearly?
+          </h2>
+          <p className="text-muted-foreground mb-8">
+            Start with a free interview. In 15 minutes, you'll have more clarity than months of ruminating.
+          </p>
+          <button className="sp-btn sp-btn-primary group">
+            Start your free interview
+            <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+          </button>
+          <p className="mt-4 text-xs text-muted-foreground italic">
+            No credit card required
+          </p>
         </div>
       </section>
 
       {/* Footer */}
       <footer className="border-t border-border">
-        <div className="sp-container py-8">
+        <div className="sp-container py-10">
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-            <div className="font-display text-xs font-medium uppercase tracking-[0.15em]">
-              Serious People
-            </div>
+            <div className="font-display italic">Serious People</div>
             <div className="flex items-center gap-8">
-              <a href="/guides" className="text-xs uppercase tracking-[0.1em] text-muted-foreground hover:text-foreground transition-colors">
+              <a href="/guides" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
                 Guides
               </a>
-              <a href="/resources" className="text-xs uppercase tracking-[0.1em] text-muted-foreground hover:text-foreground transition-colors">
+              <a href="/resources" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
                 Resources
               </a>
-              <a href="mailto:hello@seriouspeople.com" className="text-xs uppercase tracking-[0.1em] text-muted-foreground hover:text-foreground transition-colors">
+              <a href="mailto:hello@seriouspeople.com" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
                 Contact
               </a>
             </div>

@@ -19,8 +19,8 @@ export default {
     },
     extend: {
       fontFamily: {
-        display: ["Space Grotesk", "-apple-system", "sans-serif"],
-        body: ["Inter", "-apple-system", "sans-serif"],
+        display: ["Literata", "Georgia", "serif"],
+        body: ["Source Sans 3", "-apple-system", "sans-serif"],
       },
       colors: {
         border: "hsl(var(--border))",
