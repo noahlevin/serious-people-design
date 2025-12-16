@@ -102,7 +102,7 @@ const Landing = () => {
             <div className="flex flex-col sm:flex-row gap-4">
               <Button 
                 size="lg" 
-                className="group bg-primary text-primary-foreground hover:bg-primary/90 px-8 h-12 text-base"
+                className="group bg-foreground text-background hover:bg-foreground/90 px-8 h-12 text-base"
               >
                 <span className="flex items-center">
                   Start free interview
@@ -341,7 +341,7 @@ const Landing = () => {
           </p>
           <Button 
             size="lg" 
-            className="group bg-primary text-primary-foreground hover:bg-primary/90 px-10 h-12 text-base transition-all duration-300 hover:shadow-xl hover:shadow-primary/20 hover:-translate-y-0.5"
+            className="group bg-foreground text-background hover:bg-foreground/90 px-10 h-12 text-base transition-all duration-300 hover:shadow-xl hover:shadow-foreground/10 hover:-translate-y-0.5"
           >
             Start free interview
             <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
