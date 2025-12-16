@@ -3,6 +3,10 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { useFloatingParallax } from "@/hooks/useParallax";
+import HeroShapes from "@/components/graphics/HeroShapes";
+import situationIcons from "@/components/graphics/SituationIcons";
+import ProcessPath from "@/components/graphics/ProcessPath";
+import TypographicAccents from "@/components/graphics/TypographicAccents";
 
 const situations = [
   "wondering if it's time to leave",
@@ -61,15 +65,8 @@ const Landing = () => {
 
       {/* Hero - Asymmetric Layout */}
       <section className="sp-container sp-section relative">
-        {/* Decorative parallax elements */}
-        <div 
-          className="absolute top-20 right-10 w-64 h-64 rounded-full bg-sage-wash opacity-60 blur-3xl pointer-events-none"
-          style={{ transform: `translateY(${parallax.slow}px)` }}
-        />
-        <div 
-          className="absolute bottom-40 left-0 w-48 h-48 rounded-full bg-sage-wash opacity-40 blur-2xl pointer-events-none"
-          style={{ transform: `translateY(${parallax.medium}px)` }}
-        />
+        {/* Geometric shapes background */}
+        <HeroShapes parallaxOffset={parallax.slow} />
         
         <div className="grid lg:grid-cols-12 gap-12 lg:gap-8 items-start relative z-10">
           {/* Main content - offset to the left */}
@@ -186,22 +183,32 @@ const Landing = () => {
                     title: "Two opportunities",
                     description: "You have options, but comparing them feels impossible. Different roles, different tradeoffs."
                   }
-                ].map((situation, index) => (
-                  <div 
-                    key={index} 
-                    className="sp-card cursor-pointer group transition-all duration-500 hover:shadow-lg hover:shadow-primary/5 hover:-translate-y-1 border-l-2 border-l-transparent hover:border-l-primary bg-background"
-                  >
-                    <h3 className="font-display text-lg mb-2 transition-colors duration-300 group-hover:text-primary">
-                      {situation.title}
-                    </h3>
-                    <p className="text-sm text-muted-foreground leading-relaxed transition-colors duration-300 group-hover:text-foreground/70">
-                      {situation.description}
-                    </p>
-                    <div className="mt-4 flex items-center text-sm text-primary opacity-0 translate-x-[-10px] transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0">
-                      Learn more <ArrowRight className="ml-1 h-3 w-3" />
+                ].map((situation, index) => {
+                  const IconComponent = situationIcons[situation.title as keyof typeof situationIcons];
+                  return (
+                    <div 
+                      key={index} 
+                      className="sp-card cursor-pointer group transition-all duration-500 hover:shadow-lg hover:shadow-primary/5 hover:-translate-y-1 border-l-2 border-l-transparent hover:border-l-primary bg-background"
+                    >
+                      <div className="flex items-start gap-4">
+                        <div className="flex-shrink-0 p-2 rounded-lg bg-sage-wash/50 group-hover:bg-primary/10 transition-colors duration-300">
+                          {IconComponent && <IconComponent />}
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <h3 className="font-display text-lg mb-2 transition-colors duration-300 group-hover:text-primary">
+                            {situation.title}
+                          </h3>
+                          <p className="text-sm text-muted-foreground leading-relaxed transition-colors duration-300 group-hover:text-foreground/70">
+                            {situation.description}
+                          </p>
+                        </div>
+                      </div>
+                      <div className="mt-4 flex items-center text-sm text-primary opacity-0 translate-x-[-10px] transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0 pl-16">
+                        Learn more <ArrowRight className="ml-1 h-3 w-3" />
+                      </div>
                     </div>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             </div>
           </div>
@@ -209,13 +216,7 @@ const Landing = () => {
       </section>
 
       {/* How it works */}
-      <section className="sp-container sp-section border-t border-border relative">
-        {/* Decorative parallax element */}
-        <div 
-          className="absolute top-1/2 left-1/4 w-96 h-96 rounded-full bg-sage-wash opacity-50 blur-3xl pointer-events-none"
-          style={{ transform: `translateY(${parallax.slow}px)` }}
-        />
-        
+      <section className="sp-container sp-section border-t border-border relative overflow-hidden">
         <div 
           ref={processReveal.ref}
           className={`max-w-content-medium mx-auto reveal relative z-10 ${processReveal.isRevealed ? "revealed" : ""}`}
@@ -225,18 +226,11 @@ const Landing = () => {
             Three sessions. One clear plan.
           </h2>
           
-          <div className="relative">
-            {/* Animated connecting line */}
-            <div className="hidden md:block absolute top-8 left-1/2 -translate-x-1/2 w-2/3 h-px bg-sage-light overflow-hidden">
-              <div 
-                className={`h-full bg-primary transition-all duration-1000 ease-out ${
-                  processReveal.isRevealed ? "w-full" : "w-0"
-                }`}
-                style={{ transitionDelay: "0.5s" }}
-              />
-            </div>
+          <div className="relative min-h-[300px]">
+            {/* Connected path illustration */}
+            <ProcessPath isRevealed={processReveal.isRevealed} />
             
-            <div className="grid md:grid-cols-3 gap-12 md:gap-8">
+            <div className="grid md:grid-cols-3 gap-12 md:gap-8 relative z-10 pt-20 lg:pt-32">
               {[
                 {
                   step: "01",
@@ -282,10 +276,13 @@ const Landing = () => {
       </section>
 
       {/* Social proof */}
-      <section className="sp-section-sage border-t border-sage-light">
+      <section className="sp-section-sage border-t border-sage-light relative overflow-hidden">
+        {/* Typographic accents */}
+        <TypographicAccents isRevealed={statsReveal.isRevealed} />
+        
         <div 
           ref={statsReveal.ref}
-          className={`sp-container py-10 md:py-16 reveal-scale ${statsReveal.isRevealed ? "revealed" : ""}`}
+          className={`sp-container py-16 md:py-24 reveal-scale relative z-10 ${statsReveal.isRevealed ? "revealed" : ""}`}
         >
           <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16 text-center">
             {[
