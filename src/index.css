@@ -1,74 +1,72 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@400;500;600&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 /* 
- * Serious People Design System
- * Aesthetic: "The Quiet Confidence" - editorial, restrained, substance over flash
- * 
- * Color Philosophy:
- * - Warm paper background (not stark white)
- * - Deep sage as accent (unexpected, sophisticated)
- * - Near-black text with warmth
- * - Muted terracotta for subtle warmth
+ * Modern Editorial Design System
+ * Aesthetic: Sharp, contemporary, high contrast with ochre accent
+ * Typography: DM Serif Display (headlines), Inter (body)
  */
 
 @layer base {
   :root {
-    /* Paper & Ink - The Foundation */
-    --background: 40 33% 97%;           /* Warm ivory paper #FAF8F5 */
-    --foreground: 20 14% 10%;           /* Warm near-black #1C1917 */
+    /* Crisp white background with warmth */
+    --background: 40 20% 98%;              /* #FDFCFA */
+    --foreground: 0 0% 6%;                 /* #0F0F0F - pure near-black */
     
     /* Surface Hierarchy */
-    --card: 40 25% 95%;                 /* Slightly darker paper */
-    --card-foreground: 20 14% 10%;
-    --popover: 40 33% 97%;
-    --popover-foreground: 20 14% 10%;
+    --card: 40 15% 96%;
+    --card-foreground: 0 0% 6%;
+    --popover: 40 20% 98%;
+    --popover-foreground: 0 0% 6%;
     
-    /* Primary - Deep Sage (the signature) */
-    --primary: 100 12% 32%;             /* Deep sage #4A5548 */
-    --primary-foreground: 40 33% 97%;
+    /* Primary - Ochre (the signature) */
+    --primary: 38 70% 45%;                 /* #C17F24 - warm ochre */
+    --primary-foreground: 40 20% 98%;
     
-    /* Secondary - Warm Stone */
-    --secondary: 30 8% 88%;             /* Warm gray-beige */
-    --secondary-foreground: 20 14% 20%;
+    /* Secondary - Neutral gray */
+    --secondary: 30 5% 92%;
+    --secondary-foreground: 0 0% 20%;
     
     /* Muted - For secondary text */
-    --muted: 30 10% 92%;
-    --muted-foreground: 20 8% 45%;
+    --muted: 30 5% 94%;
+    --muted-foreground: 0 0% 32%;          /* #525252 */
     
-    /* Accent - Terracotta whisper */
-    --accent: 15 25% 50%;               /* Muted terracotta */
-    --accent-foreground: 40 33% 97%;
+    /* Accent - Ochre variant */
+    --accent: 38 50% 92%;                  /* Pale ochre for backgrounds */
+    --accent-foreground: 38 70% 35%;
     
     /* Functional */
     --destructive: 0 65% 50%;
-    --destructive-foreground: 40 33% 97%;
+    --destructive-foreground: 40 20% 98%;
     
-    /* Borders - Subtle, warm */
-    --border: 30 15% 85%;
-    --input: 30 15% 85%;
-    --ring: 100 12% 32%;
+    /* Borders - Crisp, neutral */
+    --border: 0 0% 90%;                    /* #E5E5E5 */
+    --input: 0 0% 90%;
+    --ring: 38 70% 45%;
     
-    --radius: 0.25rem;                  /* Minimal radius - editorial feel */
+    --radius: 0.125rem;                    /* Very minimal radius - sharp editorial */
     
     /* Sidebar */
-    --sidebar-background: 40 20% 95%;
-    --sidebar-foreground: 20 14% 25%;
-    --sidebar-primary: 100 12% 32%;
-    --sidebar-primary-foreground: 40 33% 97%;
-    --sidebar-accent: 30 15% 90%;
-    --sidebar-accent-foreground: 20 14% 20%;
-    --sidebar-border: 30 15% 85%;
-    --sidebar-ring: 100 12% 32%;
+    --sidebar-background: 40 15% 96%;
+    --sidebar-foreground: 0 0% 15%;
+    --sidebar-primary: 38 70% 45%;
+    --sidebar-primary-foreground: 40 20% 98%;
+    --sidebar-accent: 30 5% 92%;
+    --sidebar-accent-foreground: 0 0% 20%;
+    --sidebar-border: 0 0% 90%;
+    --sidebar-ring: 38 70% 45%;
     
-    /* Custom tokens for Serious People */
-    --sp-display: 'Playfair Display', Georgia, serif;
+    /* Custom tokens for Modern Editorial */
+    --sp-display: 'DM Serif Display', Georgia, serif;
     --sp-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     
-    /* Spacing rhythm */
+    /* Ochre palette */
+    --ochre: 38 70% 45%;
+    --ochre-dark: 38 70% 35%;
+    --ochre-light: 38 50% 92%;
+    
+    /* Spacing rhythm - 8px grid */
     --sp-space-xs: 0.5rem;
     --sp-space-sm: 1rem;
     --sp-space-md: 1.5rem;
@@ -83,41 +81,45 @@
   }
 
   .dark {
-    --background: 20 14% 8%;
-    --foreground: 40 20% 92%;
+    --background: 0 0% 6%;
+    --foreground: 40 15% 92%;
     
-    --card: 20 12% 12%;
-    --card-foreground: 40 20% 92%;
-    --popover: 20 14% 8%;
-    --popover-foreground: 40 20% 92%;
+    --card: 0 0% 10%;
+    --card-foreground: 40 15% 92%;
+    --popover: 0 0% 6%;
+    --popover-foreground: 40 15% 92%;
     
-    --primary: 100 15% 55%;
-    --primary-foreground: 20 14% 8%;
+    --primary: 38 75% 55%;
+    --primary-foreground: 0 0% 6%;
     
-    --secondary: 20 10% 18%;
-    --secondary-foreground: 40 20% 85%;
+    --secondary: 0 0% 15%;
+    --secondary-foreground: 40 15% 85%;
     
-    --muted: 20 10% 18%;
-    --muted-foreground: 30 10% 60%;
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 60%;
     
-    --accent: 15 30% 55%;
-    --accent-foreground: 20 14% 8%;
+    --accent: 38 40% 15%;
+    --accent-foreground: 38 75% 55%;
     
     --destructive: 0 60% 45%;
-    --destructive-foreground: 40 20% 92%;
+    --destructive-foreground: 40 15% 92%;
     
-    --border: 20 10% 20%;
-    --input: 20 10% 20%;
-    --ring: 100 15% 55%;
+    --border: 0 0% 18%;
+    --input: 0 0% 18%;
+    --ring: 38 75% 55%;
     
-    --sidebar-background: 20 12% 10%;
-    --sidebar-foreground: 40 20% 85%;
-    --sidebar-primary: 100 15% 55%;
-    --sidebar-primary-foreground: 20 14% 8%;
-    --sidebar-accent: 20 10% 15%;
-    --sidebar-accent-foreground: 40 20% 85%;
-    --sidebar-border: 20 10% 18%;
-    --sidebar-ring: 100 15% 55%;
+    --sidebar-background: 0 0% 8%;
+    --sidebar-foreground: 40 15% 85%;
+    --sidebar-primary: 38 75% 55%;
+    --sidebar-primary-foreground: 0 0% 6%;
+    --sidebar-accent: 0 0% 12%;
+    --sidebar-accent-foreground: 40 15% 85%;
+    --sidebar-border: 0 0% 18%;
+    --sidebar-ring: 38 75% 55%;
+    
+    --ochre: 38 75% 55%;
+    --ochre-dark: 38 75% 45%;
+    --ochre-light: 38 40% 15%;
   }
 }
 
@@ -136,14 +138,15 @@
     @apply bg-background text-foreground;
     font-family: var(--sp-body);
     line-height: 1.6;
+    font-weight: 400;
   }
   
-  /* Typography Scale - Editorial */
+  /* Typography Scale - Modern Editorial */
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--sp-display);
-    font-weight: 500;
-    line-height: 1.2;
-    letter-spacing: -0.02em;
+    font-weight: 400;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
   }
   
   h1 {
@@ -190,24 +193,58 @@
     @apply py-10 md:py-16;
   }
   
-  /* Editorial quote styling */
+  /* Editorial quote styling - Modern */
   .sp-quote {
     font-family: var(--sp-display);
     font-style: italic;
-    @apply text-xl md:text-2xl text-muted-foreground;
+    @apply text-xl md:text-2xl text-foreground/80;
     position: relative;
     padding-left: 1.5rem;
-    border-left: 2px solid hsl(var(--primary));
+    border-left: 3px solid hsl(var(--ochre));
   }
   
-  /* Subtle link underline animation */
+  /* Ochre accent bar */
+  .sp-accent-bar {
+    position: relative;
+    padding-left: 1rem;
+  }
+  
+  .sp-accent-bar::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: hsl(var(--ochre));
+  }
+  
+  /* Sharp headline with ochre underline */
+  .sp-headline-accent {
+    position: relative;
+    display: inline;
+  }
+  
+  .sp-headline-accent::after {
+    content: '';
+    position: absolute;
+    bottom: 0.1em;
+    left: 0;
+    right: 0;
+    height: 0.15em;
+    background: hsl(var(--ochre) / 0.3);
+    z-index: -1;
+  }
+  
+  /* Link with ochre underline animation */
   .sp-link {
     @apply relative inline-block;
   }
   
   .sp-link::after {
     content: '';
-    @apply absolute bottom-0 left-0 w-full h-px bg-primary;
+    @apply absolute bottom-0 left-0 w-full h-px;
+    background: hsl(var(--ochre));
     transform: scaleX(0);
     transform-origin: right;
     transition: transform 0.3s ease;
@@ -220,29 +257,85 @@
   
   /* Label/eyebrow text */
   .sp-eyebrow {
-    @apply text-xs font-medium uppercase tracking-widest text-muted-foreground;
+    @apply text-xs font-medium uppercase tracking-widest;
+    color: hsl(var(--ochre));
     letter-spacing: 0.15em;
   }
   
-  /* Divider with character */
-  .sp-divider {
-    @apply flex items-center gap-4 text-muted-foreground;
+  /* Horizontal rule */
+  .sp-rule {
+    @apply w-full h-px bg-border;
   }
   
-  .sp-divider::before,
-  .sp-divider::after {
-    content: '';
-    @apply flex-1 h-px bg-border;
-  }
-  
-  /* Card with editorial feel */
+  /* Card with editorial feel - Modern */
   .sp-card {
     @apply bg-card border border-border p-6 md:p-8;
+    transition: all 0.2s ease;
+  }
+  
+  .sp-card:hover {
+    border-color: hsl(var(--ochre) / 0.5);
+  }
+  
+  /* Card with ochre accent bar */
+  .sp-card-accent {
+    @apply bg-card border border-border p-6 md:p-8;
+    position: relative;
+    padding-left: 1.5rem;
+    transition: all 0.2s ease;
+  }
+  
+  .sp-card-accent::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: hsl(var(--ochre));
+    opacity: 0;
+    transition: opacity 0.2s ease;
+  }
+  
+  .sp-card-accent:hover::before {
+    opacity: 1;
+  }
+  
+  .sp-card-accent:hover {
+    border-color: hsl(var(--ochre) / 0.3);
+  }
+  
+  /* Step number - large ochre */
+  .sp-step-number {
+    font-family: var(--sp-display);
+    font-size: 3rem;
+    line-height: 1;
+    color: hsl(var(--ochre));
+    font-weight: 400;
+  }
+  
+  /* Stat number - bold ochre */
+  .sp-stat {
+    font-family: var(--sp-display);
+    @apply text-4xl md:text-5xl;
+    color: hsl(var(--ochre));
+  }
+  
+  /* CTA Button with ochre */
+  .sp-cta-primary {
+    @apply inline-flex items-center justify-center px-8 h-12 text-base font-medium;
+    background: hsl(var(--foreground));
+    color: hsl(var(--background));
+    transition: all 0.2s ease;
+  }
+  
+  .sp-cta-primary:hover {
+    background: hsl(var(--ochre));
   }
   
   /* Subtle hover lift */
   .sp-hover-lift {
-    @apply transition-transform duration-300 ease-out;
+    @apply transition-transform duration-200 ease-out;
   }
   
   .sp-hover-lift:hover {
@@ -272,10 +365,11 @@
   }
   
   .stagger-children > *:nth-child(1) { animation-delay: 0.1s; }
-  .stagger-children > *:nth-child(2) { animation-delay: 0.2s; }
-  .stagger-children > *:nth-child(3) { animation-delay: 0.3s; }
-  .stagger-children > *:nth-child(4) { animation-delay: 0.4s; }
-  .stagger-children > *:nth-child(5) { animation-delay: 0.5s; }
+  .stagger-children > *:nth-child(2) { animation-delay: 0.15s; }
+  .stagger-children > *:nth-child(3) { animation-delay: 0.2s; }
+  .stagger-children > *:nth-child(4) { animation-delay: 0.25s; }
+  .stagger-children > *:nth-child(5) { animation-delay: 0.3s; }
+  .stagger-children > *:nth-child(6) { animation-delay: 0.35s; }
   
   /* Display font utility */
   .font-display {
@@ -285,6 +379,20 @@
   /* Body font utility */
   .font-body {
     font-family: var(--sp-body);
+  }
+  
+  /* Ochre text */
+  .text-ochre {
+    color: hsl(var(--ochre));
+  }
+  
+  /* Ochre background */
+  .bg-ochre {
+    background: hsl(var(--ochre));
+  }
+  
+  .bg-ochre-light {
+    background: hsl(var(--ochre-light));
   }
 }
 
@@ -308,8 +416,8 @@
   }
 }
 
-/* Selection color */
+/* Selection color - ochre */
 ::selection {
-  background: hsl(var(--primary) / 0.15);
+  background: hsl(var(--ochre) / 0.2);
   color: hsl(var(--foreground));
 }
