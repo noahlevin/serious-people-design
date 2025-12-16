@@ -19,7 +19,7 @@ export default {
     },
     extend: {
       fontFamily: {
-        display: ["Playfair Display", "Georgia", "serif"],
+        display: ["DM Serif Display", "Georgia", "serif"],
         body: ["Inter", "-apple-system", "BlinkMacSystemFont", "sans-serif"],
       },
       colors: {
@@ -55,6 +55,11 @@ export default {
         card: {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
+        },
+        ochre: {
+          DEFAULT: "hsl(var(--ochre))",
+          dark: "hsl(var(--ochre-dark))",
+          light: "hsl(var(--ochre-light))",
         },
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",

@@ -29,7 +29,7 @@ const Landing = () => {
   return (
     <div className="min-h-screen bg-background">
       {/* Navigation */}
-      <nav className="sp-container py-6 flex items-center justify-between">
+      <nav className="sp-container py-6 flex items-center justify-between border-b border-border">
         <div className="font-display text-xl tracking-tight">
           Serious People
         </div>
@@ -40,31 +40,33 @@ const Landing = () => {
           <a href="/resources" className="sp-link text-sm text-muted-foreground hover:text-foreground transition-colors">
             Resources
           </a>
-          <a href="/login" className="text-sm font-medium hover:text-primary transition-colors">
+          <a href="/login" className="text-sm font-medium text-ochre hover:text-ochre-dark transition-colors">
             Log in
           </a>
         </div>
       </nav>
 
-      {/* Hero - Asymmetric Layout */}
+      {/* Hero - Modern Editorial */}
       <section className="sp-container sp-section">
         <div className="grid lg:grid-cols-12 gap-12 lg:gap-8 items-start">
-          {/* Main content - offset to the left */}
-          <div className="lg:col-span-7 lg:col-start-1">
-            <p className="sp-eyebrow mb-6 animate-fade-in-up">
+          {/* Main content */}
+          <div className="lg:col-span-8">
+            <p className="sp-eyebrow mb-8 animate-fade-in-up">
               Career coaching for senior professionals
             </p>
             
-            <h1 className="font-display text-balance mb-8 animate-fade-in-up" style={{ animationDelay: "0.1s" }}>
+            <h1 className="font-display text-balance mb-10 animate-fade-in-up" style={{ animationDelay: "0.1s" }}>
               You're{" "}
               <span 
-                className={`text-primary transition-opacity duration-400 ${isVisible ? "opacity-100" : "opacity-0"}`}
+                className={`text-ochre transition-opacity duration-400 ${isVisible ? "opacity-100" : "opacity-0"}`}
               >
                 {situations[currentSituation]}
               </span>
             </h1>
             
-            <p className="text-lg text-muted-foreground max-w-xl mb-10 animate-fade-in-up" style={{ animationDelay: "0.2s" }}>
+            <div className="sp-rule mb-10 animate-fade-in-up" style={{ animationDelay: "0.15s" }} />
+            
+            <p className="text-lg text-muted-foreground max-w-2xl mb-12 animate-fade-in-up" style={{ animationDelay: "0.2s" }}>
               A structured coaching experience that helps you think clearly about 
               your career—and leave with a concrete plan, not vague advice.
             </p>
@@ -72,7 +74,7 @@ const Landing = () => {
             <div className="flex flex-col sm:flex-row gap-4 animate-fade-in-up" style={{ animationDelay: "0.3s" }}>
               <Button 
                 size="lg" 
-                className="group bg-foreground text-background hover:bg-foreground/90 px-8 h-12 text-base"
+                className="group bg-foreground text-background hover:bg-ochre px-8 h-12 text-base rounded-none"
               >
                 Start free interview
                 <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
@@ -80,7 +82,7 @@ const Landing = () => {
               <Button 
                 variant="ghost" 
                 size="lg"
-                className="text-muted-foreground hover:text-foreground h-12 text-base"
+                className="text-muted-foreground hover:text-foreground hover:bg-transparent h-12 text-base underline underline-offset-4"
               >
                 See how it works
               </Button>
@@ -88,7 +90,7 @@ const Landing = () => {
           </div>
           
           {/* Pull quote - offset to the right */}
-          <div className="lg:col-span-4 lg:col-start-9 lg:mt-24">
+          <div className="lg:col-span-4 lg:mt-32">
             <blockquote className="sp-quote">
               "I spent months going in circles. One hour with this process gave me more clarity than a year of overthinking."
             </blockquote>
@@ -139,9 +141,9 @@ const Landing = () => {
               ].map((situation, index) => (
                 <div 
                   key={index} 
-                  className="sp-card sp-hover-lift cursor-pointer group"
+                  className="sp-card-accent sp-hover-lift cursor-pointer group"
                 >
-                  <h3 className="font-display text-lg mb-2 group-hover:text-primary transition-colors">
+                  <h3 className="font-display text-lg mb-2 group-hover:text-ochre transition-colors">
                     {situation.title}
                   </h3>
                   <p className="text-sm text-muted-foreground leading-relaxed">
@@ -162,43 +164,37 @@ const Landing = () => {
             Three sessions. One clear plan.
           </h2>
           
-          <div className="relative">
-            {/* Connecting line */}
-            <div className="hidden md:block absolute top-8 left-1/2 -translate-x-1/2 w-2/3 h-px bg-border" />
-            
-            <div className="grid md:grid-cols-3 gap-12 md:gap-8">
-              {[
-                {
-                  step: "01",
-                  title: "The Interview",
-                  description: "A free 15-minute AI conversation to understand your situation. We'll map out what's really going on.",
-                  note: "Free, no commitment"
-                },
-                {
-                  step: "02",
-                  title: "The Coaching",
-                  description: "Three focused modules tailored to your situation. Not generic advice—specific to you.",
-                  note: "Personalized curriculum"
-                },
-                {
-                  step: "03",
-                  title: "The Plan",
-                  description: "Walk away with scripts, timelines, and decision frameworks. Everything you need to act.",
-                  note: "Concrete deliverables"
-                }
-              ].map((step, index) => (
-                <div key={index} className="relative text-center md:text-left">
-                  <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-secondary text-secondary-foreground font-display text-lg mb-6 relative z-10">
-                    {step.step}
-                  </div>
-                  <h3 className="font-display text-xl mb-3">{step.title}</h3>
-                  <p className="text-muted-foreground text-sm mb-3 leading-relaxed">
-                    {step.description}
-                  </p>
-                  <p className="sp-eyebrow text-primary">{step.note}</p>
-                </div>
-              ))}
-            </div>
+          <div className="grid md:grid-cols-3 gap-8 md:gap-12">
+            {[
+              {
+                step: "01",
+                title: "The Interview",
+                description: "A free 15-minute AI conversation to understand your situation. We'll map out what's really going on.",
+                note: "Free, no commitment"
+              },
+              {
+                step: "02",
+                title: "The Coaching",
+                description: "Three focused modules tailored to your situation. Not generic advice—specific to you.",
+                note: "Personalized curriculum"
+              },
+              {
+                step: "03",
+                title: "The Plan",
+                description: "Walk away with scripts, timelines, and decision frameworks. Everything you need to act.",
+                note: "Concrete deliverables"
+              }
+            ].map((step, index) => (
+              <div key={index} className="relative">
+                <div className="sp-rule mb-8" />
+                <div className="sp-step-number mb-4">{step.step}</div>
+                <h3 className="font-display text-xl mb-3">{step.title}</h3>
+                <p className="text-muted-foreground text-sm mb-4 leading-relaxed">
+                  {step.description}
+                </p>
+                <p className="sp-eyebrow">{step.note}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -206,20 +202,20 @@ const Landing = () => {
       {/* Social proof */}
       <section className="border-t border-border">
         <div className="sp-container sp-section-sm">
-          <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16 text-center">
+          <div className="flex flex-col md:flex-row items-center justify-center gap-12 md:gap-20 text-center">
             <div>
-              <p className="font-display text-3xl mb-1">500+</p>
-              <p className="text-sm text-muted-foreground">Coaching sessions</p>
+              <p className="sp-stat mb-2">500+</p>
+              <p className="text-sm text-muted-foreground uppercase tracking-wider">Coaching sessions</p>
             </div>
-            <div className="hidden md:block w-px h-12 bg-border" />
+            <div className="hidden md:block w-px h-16 bg-border" />
             <div>
-              <p className="font-display text-3xl mb-1">4.9/5</p>
-              <p className="text-sm text-muted-foreground">Average rating</p>
+              <p className="sp-stat mb-2">4.9</p>
+              <p className="text-sm text-muted-foreground uppercase tracking-wider">Average rating</p>
             </div>
-            <div className="hidden md:block w-px h-12 bg-border" />
+            <div className="hidden md:block w-px h-16 bg-border" />
             <div>
-              <p className="font-display text-3xl mb-1">VP+</p>
-              <p className="text-sm text-muted-foreground">Senior professionals</p>
+              <p className="sp-stat mb-2">VP+</p>
+              <p className="text-sm text-muted-foreground uppercase tracking-wider">Senior professionals</p>
             </div>
           </div>
         </div>
@@ -231,17 +227,17 @@ const Landing = () => {
           <h2 className="font-display text-balance mb-6">
             Ready to think clearly about your career?
           </h2>
-          <p className="text-muted-foreground mb-8 max-w-md mx-auto">
+          <p className="text-muted-foreground mb-10 max-w-md mx-auto">
             Start with a free interview. In 15 minutes, you'll have more clarity than months of ruminating.
           </p>
           <Button 
             size="lg" 
-            className="group bg-foreground text-background hover:bg-foreground/90 px-10 h-12 text-base"
+            className="group bg-foreground text-background hover:bg-ochre px-10 h-12 text-base rounded-none"
           >
             Start free interview
             <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
           </Button>
-          <p className="mt-4 text-xs text-muted-foreground">
+          <p className="mt-6 text-xs text-muted-foreground uppercase tracking-wider">
             No credit card required
           </p>
         </div>
@@ -253,13 +249,13 @@ const Landing = () => {
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
             <div className="font-display text-lg">Serious People</div>
             <div className="flex items-center gap-8">
-              <a href="/guides" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+              <a href="/guides" className="sp-link text-sm text-muted-foreground hover:text-foreground transition-colors">
                 Guides
               </a>
-              <a href="/resources" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+              <a href="/resources" className="sp-link text-sm text-muted-foreground hover:text-foreground transition-colors">
                 Resources
               </a>
-              <a href="mailto:hello@seriouspeople.com" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+              <a href="mailto:hello@seriouspeople.com" className="sp-link text-sm text-muted-foreground hover:text-foreground transition-colors">
                 Contact
               </a>
             </div>
