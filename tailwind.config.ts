@@ -21,6 +21,7 @@ export default {
       fontFamily: {
         display: ["Playfair Display", "Georgia", "serif"],
         body: ["Inter", "-apple-system", "BlinkMacSystemFont", "sans-serif"],
+        chat: ["Lora", "Georgia", "serif"],
       },
       colors: {
         border: "hsl(var(--border))",
