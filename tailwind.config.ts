@@ -66,6 +66,11 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
+        // Custom Serious People colors
+        terracotta: "hsl(var(--sp-terracotta))",
+        "sage-wash": "hsl(var(--sp-sage-wash))",
+        "sage-light": "hsl(var(--sp-sage-light))",
+        "sage-medium": "hsl(var(--sp-sage-medium))",
       },
       borderRadius: {
         lg: "var(--radius)",

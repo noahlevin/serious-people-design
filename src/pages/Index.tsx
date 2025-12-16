@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
+import { useFloatingParallax } from "@/hooks/useParallax";
 
 const situations = [
   "wondering if it's time to leave",
@@ -15,6 +16,7 @@ const situations = [
 const Landing = () => {
   const [currentSituation, setCurrentSituation] = useState(0);
   const [isVisible, setIsVisible] = useState(true);
+  const parallax = useFloatingParallax(0.15);
 
   // Scroll reveal hooks for each section
   const heroReveal = useScrollReveal();
@@ -58,21 +60,31 @@ const Landing = () => {
       </nav>
 
       {/* Hero - Asymmetric Layout */}
-      <section className="sp-container sp-section">
-        <div className="grid lg:grid-cols-12 gap-12 lg:gap-8 items-start">
+      <section className="sp-container sp-section relative">
+        {/* Decorative parallax elements */}
+        <div 
+          className="absolute top-20 right-10 w-64 h-64 rounded-full bg-sage-wash opacity-60 blur-3xl pointer-events-none"
+          style={{ transform: `translateY(${parallax.slow}px)` }}
+        />
+        <div 
+          className="absolute bottom-40 left-0 w-48 h-48 rounded-full bg-sage-wash opacity-40 blur-2xl pointer-events-none"
+          style={{ transform: `translateY(${parallax.medium}px)` }}
+        />
+        
+        <div className="grid lg:grid-cols-12 gap-12 lg:gap-8 items-start relative z-10">
           {/* Main content - offset to the left */}
           <div 
             ref={heroReveal.ref}
             className={`lg:col-span-7 lg:col-start-1 reveal-left ${heroReveal.isRevealed ? "revealed" : ""}`}
           >
-            <p className="sp-eyebrow mb-6">
+            <p className="sp-eyebrow mb-6 text-primary">
               Career coaching for senior professionals
             </p>
             
             <h1 className="font-display text-4xl md:text-5xl lg:text-6xl text-balance mb-8">
               You're{" "}
               <span 
-                className={`text-primary inline-block transition-all duration-500 ${
+                className={`text-terracotta inline-block transition-all duration-500 ${
                   isVisible 
                     ? "opacity-100 translate-y-0" 
                     : "opacity-0 translate-y-2"
@@ -90,9 +102,9 @@ const Landing = () => {
             <div className="flex flex-col sm:flex-row gap-4">
               <Button 
                 size="lg" 
-                className="group bg-foreground text-background hover:bg-foreground/90 px-8 h-12 text-base relative overflow-hidden shimmer"
+                className="group bg-primary text-primary-foreground hover:bg-primary/90 px-8 h-12 text-base"
               >
-                <span className="relative z-10 flex items-center">
+                <span className="flex items-center">
                   Start free interview
                   <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
                 </span>
@@ -100,7 +112,7 @@ const Landing = () => {
               <Button 
                 variant="ghost" 
                 size="lg"
-                className="text-muted-foreground hover:text-foreground h-12 text-base group"
+                className="text-muted-foreground h-12 text-base group"
               >
                 <span className="relative">
                   See how it works
@@ -110,100 +122,112 @@ const Landing = () => {
             </div>
           </div>
           
-          {/* Pull quote - offset to the right */}
+          {/* Pull quote - redesigned elegant style */}
           <div 
             ref={quoteReveal.ref}
             className={`lg:col-span-4 lg:col-start-9 lg:mt-24 reveal-right ${quoteReveal.isRevealed ? "revealed" : ""}`}
             style={{ transitionDelay: "0.2s" }}
           >
-            <blockquote className="sp-quote animate-float-delayed">
-              "I spent months going in circles. One hour with this process gave me more clarity than a year of overthinking."
-            </blockquote>
-            <p className="mt-4 text-sm text-muted-foreground">
-              — VP of Engineering, Series C startup
-            </p>
+            <div className="sp-quote-elegant">
+              <blockquote>
+                I spent months going in circles. One hour with this process gave me more clarity than a year of overthinking.
+              </blockquote>
+              <cite>
+                <span className="text-foreground font-medium">— VP of Engineering</span>
+                <br />
+                Series C startup
+              </cite>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Situations Section */}
-      <section className="sp-container sp-section border-t border-border">
-        <div className="grid lg:grid-cols-12 gap-12">
-          <div 
-            ref={situationsHeaderReveal.ref}
-            className={`lg:col-span-4 reveal ${situationsHeaderReveal.isRevealed ? "revealed" : ""}`}
-          >
-            <p className="sp-eyebrow mb-4">What brings people here</p>
-            <h2 className="font-display text-balance">
-              Career decisions shouldn't feel like guesswork
-            </h2>
-          </div>
-          
-          <div 
-            ref={situationsCardsReveal.ref}
-            className={`lg:col-span-7 lg:col-start-6 stagger-children ${situationsCardsReveal.isRevealed ? "revealed" : ""}`}
-          >
-            <div className="grid sm:grid-cols-2 gap-6">
-              {[
-                {
-                  title: "Stay or go?",
-                  description: "You've been thinking about leaving for months, but can't decide if it's the right move."
-                },
-                {
-                  title: "Bad manager",
-                  description: "Your boss is making your life difficult. You're not sure if it's fixable or time to exit."
-                },
-                {
-                  title: "Burnout",
-                  description: "You're exhausted and know something needs to change, but what? A new job? A break? A career shift?"
-                },
-                {
-                  title: "Negotiating an exit",
-                  description: "You've decided to leave. Now you need to navigate the conversation without burning bridges."
-                },
-                {
-                  title: "Counter-offer dilemma",
-                  description: "They matched your offer. Now you're second-guessing everything."
-                },
-                {
-                  title: "Two opportunities",
-                  description: "You have options, but comparing them feels impossible. Different roles, different tradeoffs."
-                }
-              ].map((situation, index) => (
-                <div 
-                  key={index} 
-                  className="sp-card cursor-pointer group transition-all duration-500 hover:shadow-lg hover:shadow-primary/5 hover:-translate-y-1 hover:border-primary/20"
-                >
-                  <h3 className="font-display text-lg mb-2 transition-colors duration-300 group-hover:text-primary">
-                    {situation.title}
-                  </h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed transition-colors duration-300 group-hover:text-foreground/70">
-                    {situation.description}
-                  </p>
-                  <div className="mt-4 flex items-center text-sm text-primary opacity-0 translate-x-[-10px] transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0">
-                    Learn more <ArrowRight className="ml-1 h-3 w-3" />
+      {/* Situations Section - with sage wash background */}
+      <section className="sp-section-sage border-t border-sage-light">
+        <div className="sp-container py-16 md:py-24 lg:py-32">
+          <div className="grid lg:grid-cols-12 gap-12">
+            <div 
+              ref={situationsHeaderReveal.ref}
+              className={`lg:col-span-4 reveal ${situationsHeaderReveal.isRevealed ? "revealed" : ""}`}
+            >
+              <p className="sp-eyebrow mb-4 text-primary">What brings people here</p>
+              <h2 className="font-display text-balance">
+                Career decisions shouldn't feel like guesswork
+              </h2>
+            </div>
+            
+            <div 
+              ref={situationsCardsReveal.ref}
+              className={`lg:col-span-7 lg:col-start-6 stagger-children ${situationsCardsReveal.isRevealed ? "revealed" : ""}`}
+            >
+              <div className="grid sm:grid-cols-2 gap-6">
+                {[
+                  {
+                    title: "Stay or go?",
+                    description: "You've been thinking about leaving for months, but can't decide if it's the right move."
+                  },
+                  {
+                    title: "Bad manager",
+                    description: "Your boss is making your life difficult. You're not sure if it's fixable or time to exit."
+                  },
+                  {
+                    title: "Burnout",
+                    description: "You're exhausted and know something needs to change, but what? A new job? A break? A career shift?"
+                  },
+                  {
+                    title: "Negotiating an exit",
+                    description: "You've decided to leave. Now you need to navigate the conversation without burning bridges."
+                  },
+                  {
+                    title: "Counter-offer dilemma",
+                    description: "They matched your offer. Now you're second-guessing everything."
+                  },
+                  {
+                    title: "Two opportunities",
+                    description: "You have options, but comparing them feels impossible. Different roles, different tradeoffs."
+                  }
+                ].map((situation, index) => (
+                  <div 
+                    key={index} 
+                    className="sp-card cursor-pointer group transition-all duration-500 hover:shadow-lg hover:shadow-primary/5 hover:-translate-y-1 border-l-2 border-l-transparent hover:border-l-primary bg-background"
+                  >
+                    <h3 className="font-display text-lg mb-2 transition-colors duration-300 group-hover:text-primary">
+                      {situation.title}
+                    </h3>
+                    <p className="text-sm text-muted-foreground leading-relaxed transition-colors duration-300 group-hover:text-foreground/70">
+                      {situation.description}
+                    </p>
+                    <div className="mt-4 flex items-center text-sm text-primary opacity-0 translate-x-[-10px] transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0">
+                      Learn more <ArrowRight className="ml-1 h-3 w-3" />
+                    </div>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
           </div>
         </div>
       </section>
 
       {/* How it works */}
-      <section className="sp-container sp-section border-t border-border">
+      <section className="sp-container sp-section border-t border-border relative">
+        {/* Decorative parallax element */}
+        <div 
+          className="absolute top-1/2 left-1/4 w-96 h-96 rounded-full bg-sage-wash opacity-50 blur-3xl pointer-events-none"
+          style={{ transform: `translateY(${parallax.slow}px)` }}
+        />
+        
         <div 
           ref={processReveal.ref}
-          className={`max-w-content-medium mx-auto reveal ${processReveal.isRevealed ? "revealed" : ""}`}
+          className={`max-w-content-medium mx-auto reveal relative z-10 ${processReveal.isRevealed ? "revealed" : ""}`}
         >
-          <p className="sp-eyebrow mb-4 text-center">The process</p>
+          <p className="sp-eyebrow mb-4 text-center text-primary">The process</p>
           <h2 className="font-display text-balance text-center mb-16">
             Three sessions. One clear plan.
           </h2>
           
           <div className="relative">
             {/* Animated connecting line */}
-            <div className="hidden md:block absolute top-8 left-1/2 -translate-x-1/2 w-2/3 h-px bg-border overflow-hidden">
+            <div className="hidden md:block absolute top-8 left-1/2 -translate-x-1/2 w-2/3 h-px bg-sage-light overflow-hidden">
               <div 
                 className={`h-full bg-primary transition-all duration-1000 ease-out ${
                   processReveal.isRevealed ? "w-full" : "w-0"
@@ -242,14 +266,14 @@ const Landing = () => {
                   }`}
                   style={{ transitionDelay: `${0.3 + index * 0.2}s` }}
                 >
-                  <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-secondary text-secondary-foreground font-display text-lg mb-6 relative z-10 transition-all duration-500 hover:bg-primary hover:text-primary-foreground hover:scale-110 cursor-default group">
+                  <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 text-primary font-display text-lg mb-6 relative z-10 transition-all duration-500 hover:bg-primary hover:text-primary-foreground hover:scale-110 cursor-default group border border-primary/20">
                     <span className="transition-transform duration-300 group-hover:scale-110">{step.step}</span>
                   </div>
                   <h3 className="font-display text-xl mb-3">{step.title}</h3>
                   <p className="text-muted-foreground text-sm mb-3 leading-relaxed">
                     {step.description}
                   </p>
-                  <p className="sp-eyebrow text-primary animate-pulse-subtle">{step.note}</p>
+                  <p className="sp-eyebrow text-terracotta">{step.note}</p>
                 </div>
               ))}
             </div>
@@ -258,10 +282,10 @@ const Landing = () => {
       </section>
 
       {/* Social proof */}
-      <section className="border-t border-border">
+      <section className="sp-section-sage border-t border-sage-light">
         <div 
           ref={statsReveal.ref}
-          className={`sp-container sp-section-sm reveal-scale ${statsReveal.isRevealed ? "revealed" : ""}`}
+          className={`sp-container py-10 md:py-16 reveal-scale ${statsReveal.isRevealed ? "revealed" : ""}`}
         >
           <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16 text-center">
             {[
@@ -278,14 +302,14 @@ const Landing = () => {
                   }`}
                   style={{ transitionDelay: `${0.2 + index * 0.15}s` }}
                 >
-                  <p className="font-display text-3xl mb-1 hover:text-primary transition-colors duration-300 cursor-default">
+                  <p className="font-display text-3xl mb-1 text-primary">
                     {stat.value}
                   </p>
                   <p className="text-sm text-muted-foreground">{stat.label}</p>
                 </div>
                 {index < 2 && (
                   <div 
-                    className={`hidden md:block w-px h-12 bg-border transition-all duration-500 ${
+                    className={`hidden md:block w-px h-12 bg-sage-medium transition-all duration-500 ${
                       statsReveal.isRevealed ? "opacity-100 scale-y-100" : "opacity-0 scale-y-0"
                     }`}
                     style={{ transitionDelay: `${0.5 + index * 0.1}s` }}
@@ -298,10 +322,16 @@ const Landing = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="sp-container sp-section border-t border-border">
+      <section className="sp-container sp-section border-t border-border relative">
+        {/* Decorative parallax element */}
+        <div 
+          className="absolute bottom-0 right-1/4 w-72 h-72 rounded-full bg-sage-wash opacity-50 blur-3xl pointer-events-none"
+          style={{ transform: `translateY(${parallax.medium}px)` }}
+        />
+        
         <div 
           ref={ctaReveal.ref}
-          className={`max-w-content-narrow mx-auto text-center reveal ${ctaReveal.isRevealed ? "revealed" : ""}`}
+          className={`max-w-content-narrow mx-auto text-center reveal relative z-10 ${ctaReveal.isRevealed ? "revealed" : ""}`}
         >
           <h2 className="font-display text-balance mb-6">
             Ready to think clearly about your career?
@@ -311,7 +341,7 @@ const Landing = () => {
           </p>
           <Button 
             size="lg" 
-            className="group bg-foreground text-background hover:bg-foreground/90 px-10 h-12 text-base transition-all duration-300 hover:shadow-xl hover:shadow-foreground/10 hover:-translate-y-0.5"
+            className="group bg-primary text-primary-foreground hover:bg-primary/90 px-10 h-12 text-base transition-all duration-300 hover:shadow-xl hover:shadow-primary/20 hover:-translate-y-0.5"
           >
             Start free interview
             <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
