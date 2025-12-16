@@ -5,6 +5,7 @@ import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { useFloatingParallax } from "@/hooks/useParallax";
 import situationIcons from "@/components/graphics/SituationIcons";
 import ProcessPath from "@/components/graphics/ProcessPath";
+import heroIllustration from "@/assets/hero-illustration.png";
 
 const situations = [
   "wondering if it's time to leave",
@@ -144,6 +145,14 @@ const Landing = () => {
             </div>
           </div>
           
+          {/* Hero illustration */}
+          <div className="hidden lg:block lg:col-span-5 lg:col-start-8">
+            <img 
+              src={heroIllustration} 
+              alt="Illustration of a professional contemplating career decisions" 
+              className="w-full h-auto opacity-90"
+            />
+          </div>
         </div>
       </section>
 
