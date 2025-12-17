@@ -54,16 +54,10 @@ const ModuleWrapUp = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Header */}
       <header className="border-b border-border">
-        <div className="sp-container py-4 flex items-center justify-between">
-          <Link to="/" className="flex items-center gap-3">
-            <div className="w-9 h-9 bg-muted rounded flex items-center justify-center">
-              <span className="font-display font-semibold text-foreground text-sm">SP</span>
-            </div>
-            <span className="font-display font-medium text-foreground tracking-tight">
-              SERIOUS PEOPLE
-            </span>
+        <div className="sp-container py-6 flex items-center justify-between">
+          <Link to="/" className="font-display text-xl tracking-tight hover:text-primary transition-colors duration-300">
+            Serious People
           </Link>
           
           {/* Progress indicator */}
