@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Check, MessageSquare } from "lucide-react";
+import { Check } from "lucide-react";
 
 type LoginState = "form" | "sent";
 
@@ -83,17 +83,14 @@ const Login = () => {
                   <label className="block text-sm font-medium text-foreground mb-2">
                     Email address
                   </label>
-                  <div className="relative mb-6">
-                    <Input
-                      type="email"
-                      placeholder="you@example.com"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      className="h-12 pr-12"
-                      required
-                    />
-                    <MessageSquare className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-accent" />
-                  </div>
+                  <Input
+                    type="email"
+                    placeholder="you@example.com"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    className="h-12 mb-6"
+                    required
+                  />
                   <Button
                     type="submit"
                     className="w-full h-12 text-base font-medium bg-foreground text-background hover:bg-foreground/90"
