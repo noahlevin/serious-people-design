@@ -1,11 +1,12 @@
 import { useState, useRef, useEffect } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { X } from "lucide-react";
 import ChatMessage from "@/components/interview/ChatMessage";
 import ChatInput from "@/components/interview/ChatInput";
 import WelcomeCard from "@/components/interview/WelcomeCard";
 import SectionDivider from "@/components/interview/SectionDivider";
+import UpsellCard from "@/components/interview/UpsellCard";
 import { Message, mockResponses, interviewQuestions, interviewSections } from "@/data/mockInterview";
 
 // First message without the intro (welcome card handles that)
@@ -17,11 +18,11 @@ const firstQuestion: Message = {
 };
 
 const InterviewChat = () => {
-  const navigate = useNavigate();
   const [messages, setMessages] = useState<Message[]>([firstQuestion]);
   const [questionIndex, setQuestionIndex] = useState(0);
   const [isTyping, setIsTyping] = useState(false);
   const [isComplete, setIsComplete] = useState(false);
+  const [showUpsell, setShowUpsell] = useState(false);
   const [shownSections, setShownSections] = useState<string[]>(['context']);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
@@ -66,7 +67,7 @@ const InterviewChat = () => {
       setIsTyping(false);
       
       if (nextIndex >= totalQuestions) {
-        // Final message before results
+        // Final message before upsell
         const finalMessage: Message = {
           id: (Date.now() + 1).toString(),
           role: 'assistant',
@@ -76,10 +77,10 @@ const InterviewChat = () => {
         setMessages(prev => [...prev, finalMessage]);
         setIsComplete(true);
 
-        // Navigate to results after a delay
+        // Show upsell card after a delay
         setTimeout(() => {
-          navigate("/interview/results");
-        }, 2500);
+          setShowUpsell(true);
+        }, 2000);
       } else {
         // Add AI response
         const aiMessage: Message = {
@@ -94,8 +95,8 @@ const InterviewChat = () => {
   };
 
   const handleExit = () => {
-    if (window.confirm("Are you sure you want to exit? Your progress will be lost.")) {
-      navigate("/");
+    if (window.confirm("Are you sure you want to exit? Your progress will be saved.")) {
+      window.location.href = "/";
     }
   };
 
@@ -194,12 +195,18 @@ const InterviewChat = () => {
             />
           )}
           
-          {isComplete && (
+          {isComplete && !showUpsell && (
             <div className="text-center py-8 animate-fade-in">
               <div className="inline-flex items-center gap-2 text-muted-foreground">
                 <div className="w-2 h-2 bg-accent rounded-full animate-pulse" />
                 <span className="text-sm">Analyzing your responses...</span>
               </div>
+            </div>
+          )}
+
+          {showUpsell && (
+            <div className="py-6">
+              <UpsellCard userName="Sarah" />
             </div>
           )}
           
