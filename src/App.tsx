@@ -10,6 +10,7 @@ import Login from "./pages/Login";
 import Prepare from "./pages/Prepare";
 import Offer from "./pages/Offer";
 import HowItWorks from "./pages/HowItWorks";
+import ModuleWrapUp from "./pages/ModuleWrapUp";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -28,6 +29,7 @@ const App = () => (
           <Route path="/app/prepare" element={<Prepare />} />
           <Route path="/app/offer" element={<Offer />} />
           <Route path="/how-it-works" element={<HowItWorks />} />
+          <Route path="/app/module/:moduleId/complete" element={<ModuleWrapUp />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
