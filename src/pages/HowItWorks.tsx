@@ -109,46 +109,79 @@ const HowItWorks = () => {
         </div>
       </section>
 
-      {/* Steps */}
-      <section className="sp-container sp-section border-t border-border">
+      {/* Table of Contents */}
+      <section className="sp-container py-12 md:py-16 border-t border-border">
         <div 
           ref={stepsReveal.ref}
           className={`reveal ${stepsReveal.isRevealed ? "revealed" : ""}`}
         >
-          <div className="space-y-16 md:space-y-24">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
             {steps.map((step, index) => (
               <div 
                 key={step.number}
-                className={`grid lg:grid-cols-12 gap-8 lg:gap-12 items-start transition-all duration-700 ${
+                className={`group relative transition-all duration-500 ${
                   stepsReveal.isRevealed 
                     ? "opacity-100 translate-y-0" 
-                    : "opacity-0 translate-y-8"
+                    : "opacity-0 translate-y-4"
                 }`}
-                style={{ transitionDelay: `${0.2 + index * 0.15}s` }}
+                style={{ transitionDelay: `${0.1 + index * 0.1}s` }}
               >
-                {/* Number */}
-                <div className="lg:col-span-2">
-                  <span className="font-display text-5xl md:text-6xl text-primary/20">
-                    {step.number}
-                  </span>
-                </div>
+                {/* Connector line */}
+                {index < steps.length - 1 && (
+                  <div className="hidden md:block absolute top-6 left-full w-full h-px bg-border z-0" />
+                )}
                 
-                {/* Content */}
-                <div className="lg:col-span-6">
-                  <p className="sp-eyebrow text-terracotta mb-3">{step.duration}</p>
-                  <h2 className="font-display text-2xl md:text-3xl mb-4">
+                <div className="relative z-10 bg-background">
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="w-12 h-12 rounded-full border-2 border-border group-hover:border-primary group-hover:bg-primary/5 transition-colors duration-300 flex items-center justify-center">
+                      <span className="font-display text-sm text-muted-foreground group-hover:text-primary transition-colors">
+                        {step.number}
+                      </span>
+                    </div>
+                  </div>
+                  <h3 className="font-display text-base md:text-lg text-foreground mb-1 group-hover:text-primary transition-colors">
                     {step.title}
-                  </h2>
-                  <p className="text-muted-foreground leading-relaxed mb-3">
-                    {step.description}
-                  </p>
-                  <p className="text-sm text-foreground/60 italic">
-                    {step.detail}
+                  </h3>
+                  <p className="text-xs text-muted-foreground">
+                    {step.duration}
                   </p>
                 </div>
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Steps Detail */}
+      <section className="sp-container sp-section border-t border-border">
+        <div className="space-y-16 md:space-y-24">
+          {steps.map((step, index) => (
+            <div 
+              key={step.number}
+              className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-start"
+            >
+              {/* Number */}
+              <div className="lg:col-span-2">
+                <span className="font-display text-5xl md:text-6xl text-primary/20">
+                  {step.number}
+                </span>
+              </div>
+              
+              {/* Content */}
+              <div className="lg:col-span-6">
+                <p className="sp-eyebrow text-terracotta mb-3">{step.duration}</p>
+                <h2 className="font-display text-2xl md:text-3xl mb-4">
+                  {step.title}
+                </h2>
+                <p className="text-muted-foreground leading-relaxed mb-3">
+                  {step.description}
+                </p>
+                <p className="text-sm text-foreground/60 italic">
+                  {step.detail}
+                </p>
+              </div>
+            </div>
+          ))}
         </div>
       </section>
 
