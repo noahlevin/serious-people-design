@@ -23,30 +23,54 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background flex flex-col">
       {/* Header */}
-      <header className="border-b border-border">
-        <div className="sp-container py-4 flex items-center gap-3">
-          <div className="w-9 h-9 bg-muted rounded flex items-center justify-center">
-            <span className="font-display font-semibold text-foreground text-sm">SP</span>
-          </div>
-          <span className="font-display font-medium text-foreground tracking-tight">
-            SERIOUS PEOPLE
-          </span>
+      <header className="border-b border-border shrink-0">
+        <div className="sp-container py-4">
+          <Link to="/" className="flex items-center gap-3">
+            <div className="w-9 h-9 bg-muted rounded flex items-center justify-center">
+              <span className="font-display font-semibold text-foreground text-sm">SP</span>
+            </div>
+            <span className="font-display font-medium text-foreground tracking-tight">
+              SERIOUS PEOPLE
+            </span>
+          </Link>
         </div>
       </header>
 
-      {/* Main content */}
-      <main className="flex items-center justify-center px-6 py-16 md:py-24">
-        <div className="w-full max-w-md">
-          <div className="bg-card border border-border rounded-sm p-8 md:p-10">
-            <h1 className="font-display text-2xl md:text-3xl text-foreground text-center mb-8">
-              Log in to continue
-            </h1>
+      {/* Main */}
+      <main className="flex-1 flex">
+        {/* Left - Brand/Message */}
+        <div className="hidden lg:flex lg:w-1/2 bg-foreground text-background p-12 xl:p-16 flex-col justify-between">
+          <div />
+          
+          <div className="max-w-md">
+            <blockquote className="font-display text-3xl xl:text-4xl italic leading-tight mb-8">
+              "The best career decisions are made with clarity, not courage."
+            </blockquote>
+            <p className="text-background/60 text-sm">
+              Executive coaching for people who take their careers seriously.
+            </p>
+          </div>
 
+          <p className="text-background/40 text-xs">
+            © {new Date().getFullYear()} Serious People
+          </p>
+        </div>
+
+        {/* Right - Form */}
+        <div className="flex-1 flex items-center justify-center p-6 md:p-12">
+          <div className="w-full max-w-sm">
             {state === "form" ? (
               <>
-                {/* Google login */}
+                <h1 className="font-display text-2xl md:text-3xl text-foreground mb-2">
+                  Welcome back
+                </h1>
+                <p className="text-muted-foreground mb-8">
+                  Sign in to continue your session.
+                </p>
+
+                {/* Google */}
                 <Button
                   variant="outline"
                   className="w-full h-12 text-base font-medium mb-6"
@@ -78,7 +102,7 @@ const Login = () => {
                   or
                 </div>
 
-                {/* Email form */}
+                {/* Email */}
                 <form onSubmit={handleSubmit}>
                   <label className="block text-sm font-medium text-foreground mb-2">
                     Email address
@@ -88,7 +112,7 @@ const Login = () => {
                     placeholder="you@example.com"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    className="h-12 mb-6"
+                    className="h-12 mb-4"
                     required
                   />
                   <Button
@@ -99,38 +123,38 @@ const Login = () => {
                   </Button>
                 </form>
 
-                <p className="text-sm text-muted-foreground text-center mt-6">
-                  Logging in allows us to save your progress so you can pick up where you left off.
+                <p className="text-sm text-muted-foreground text-center mt-8">
+                  We'll email you a magic link for password-free sign in.
                 </p>
               </>
             ) : (
-              /* Email sent state */
+              /* Email sent */
               <div className="text-center">
-                <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-6">
-                  <Check className="w-8 h-8 text-primary" />
+                <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-6">
+                  <Check className="w-7 h-7 text-primary" />
                 </div>
-                <h2 className="font-display text-xl text-foreground mb-2">
-                  Check your email
-                </h2>
+                
+                <h1 className="font-display text-2xl text-foreground mb-2">
+                  Check your inbox
+                </h1>
+                
                 <p className="text-muted-foreground mb-1">
                   We sent a login link to
                 </p>
-                <p className="font-medium text-foreground mb-2">
+                <p className="font-medium text-foreground mb-6">
                   {email}
                 </p>
-                <p className="text-sm text-muted-foreground mb-6">
-                  The link will expire in 15 minutes.
+                
+                <p className="text-sm text-muted-foreground mb-8">
+                  Click the link in your email to sign in. It expires in 15 minutes.
                 </p>
+                
                 <button
                   onClick={() => setState("form")}
-                  className="text-foreground underline underline-offset-4 hover:text-foreground/80 transition-colors"
+                  className="text-sm text-foreground underline underline-offset-4 hover:text-foreground/80 transition-colors"
                 >
                   Use a different email
                 </button>
-
-                <p className="text-sm text-muted-foreground mt-8">
-                  Logging in allows us to save your progress so you can pick up where you left off.
-                </p>
               </div>
             )}
           </div>
