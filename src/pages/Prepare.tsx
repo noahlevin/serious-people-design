@@ -1,66 +1,121 @@
 import { Link } from "react-router-dom";
+import { Clock, Lock, ArrowRight } from "lucide-react";
 
 const Prepare = () => {
-  const tips = [
-    {
-      number: 1,
-      text: "Make space. Give it 20–30 minutes without multitasking.",
-    },
-    {
-      number: 2,
-      text: "Be honest and specific. The more detail you share, the sharper the advice.",
-    },
-    {
-      number: 3,
-      text: "Expect pushback. The coach may challenge fuzzy thinking—that's a feature, not a bug.",
-    },
-  ];
-
   return (
-    <div className="min-h-screen bg-background flex items-center justify-center px-6 py-16">
-      <div className="w-full max-w-lg">
-        <div className="bg-card border border-border rounded-sm p-8 md:p-10">
-          <h1 className="font-display text-3xl md:text-4xl text-foreground mb-4">
-            Welcome to Serious People
-          </h1>
-          
-          <p className="text-muted-foreground text-lg mb-8">
-            This is a real coaching session, not a quick quiz. Treat it like a trusted coach who's on your side.
-          </p>
-
-          <p className="font-medium text-foreground mb-5">
-            To get the most out of it:
-          </p>
-
-          <div className="space-y-5 mb-8">
-            {tips.map((tip) => (
-              <div key={tip.number} className="flex items-start gap-4">
-                <div className="w-8 h-8 rounded-full bg-foreground text-background flex items-center justify-center flex-shrink-0 text-sm font-medium">
-                  {tip.number}
-                </div>
-                <p className="text-foreground pt-1">{tip.text}</p>
-              </div>
-            ))}
-          </div>
-
-          <p className="text-muted-foreground mb-8">
-            When you're ready, we'll start by getting a clear picture of what's going on and what's at stake.
-          </p>
-
-          <Link to="/interview/chat">
-            <button className="w-full py-4 bg-foreground text-background text-base font-medium hover:bg-foreground/90 transition-colors">
-              I'm ready, start the interview
-            </button>
-          </Link>
-
-          <Link 
-            to="/"
-            className="block text-center mt-4 text-foreground underline underline-offset-4 hover:text-foreground/80 transition-colors"
-          >
-            Not ready yet? Save and come back later →
+    <div className="min-h-screen bg-background flex flex-col">
+      {/* Header */}
+      <header className="border-b border-border shrink-0">
+        <div className="sp-container py-4">
+          <Link to="/" className="flex items-center gap-3">
+            <div className="w-9 h-9 bg-muted rounded flex items-center justify-center">
+              <span className="font-display font-semibold text-foreground text-sm">SP</span>
+            </div>
+            <span className="font-display font-medium text-foreground tracking-tight">
+              SERIOUS PEOPLE
+            </span>
           </Link>
         </div>
-      </div>
+      </header>
+
+      {/* Main */}
+      <main className="flex-1 flex">
+        {/* Left - Content */}
+        <div className="flex-1 flex items-center justify-center p-6 md:p-12 lg:p-16">
+          <div className="max-w-lg">
+            <p className="sp-eyebrow text-accent mb-4">Before We Begin</p>
+            
+            <h1 className="font-display text-3xl md:text-4xl text-foreground mb-4">
+              This isn't a quiz.
+            </h1>
+            
+            <p className="text-lg text-muted-foreground mb-10 leading-relaxed">
+              You're about to have a real conversation about your career. The more honest you are, the more useful this becomes.
+            </p>
+
+            {/* The asks */}
+            <div className="space-y-6 mb-10">
+              <div className="flex gap-4">
+                <div className="w-8 h-8 rounded-full bg-foreground text-background flex items-center justify-center shrink-0 text-sm font-medium">
+                  1
+                </div>
+                <div>
+                  <p className="font-medium text-foreground mb-1">Clear 20 minutes</p>
+                  <p className="text-muted-foreground text-sm">
+                    Close Slack. This works better without distractions.
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex gap-4">
+                <div className="w-8 h-8 rounded-full bg-foreground text-background flex items-center justify-center shrink-0 text-sm font-medium">
+                  2
+                </div>
+                <div>
+                  <p className="font-medium text-foreground mb-1">Be specific</p>
+                  <p className="text-muted-foreground text-sm">
+                    Vague answers get vague advice. Names, numbers, timelines—they matter.
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex gap-4">
+                <div className="w-8 h-8 rounded-full bg-foreground text-background flex items-center justify-center shrink-0 text-sm font-medium">
+                  3
+                </div>
+                <div>
+                  <p className="font-medium text-foreground mb-1">Expect to be challenged</p>
+                  <p className="text-muted-foreground text-sm">
+                    We'll push back on fuzzy thinking. That's the point.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* CTA */}
+            <Link to="/interview/chat">
+              <button className="w-full sm:w-auto px-8 py-4 bg-foreground text-background text-base font-medium hover:bg-foreground/90 transition-colors flex items-center justify-center gap-2">
+                I'm ready
+                <ArrowRight className="w-4 h-4" />
+              </button>
+            </Link>
+
+            <Link 
+              to="/"
+              className="block mt-4 text-sm text-muted-foreground hover:text-foreground transition-colors"
+            >
+              Not now — save and come back later
+            </Link>
+          </div>
+        </div>
+
+        {/* Right - Dark panel */}
+        <div className="hidden lg:flex lg:w-2/5 bg-foreground text-background p-12 xl:p-16 flex-col justify-between">
+          <div />
+          
+          <div>
+            <div className="flex items-center gap-6 mb-8 text-background/60">
+              <div className="flex items-center gap-2">
+                <Clock className="w-4 h-4" />
+                <span className="text-sm">~20 minutes</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Lock className="w-4 h-4" />
+                <span className="text-sm">Private</span>
+              </div>
+            </div>
+            
+            <blockquote className="font-display text-2xl xl:text-3xl italic leading-tight mb-6">
+              "Most people spend more time planning their vacations than their careers."
+            </blockquote>
+            <p className="text-background/60 text-sm">
+              You're not most people.
+            </p>
+          </div>
+
+          <div />
+        </div>
+      </main>
     </div>
   );
 };
