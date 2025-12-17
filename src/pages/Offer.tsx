@@ -55,6 +55,19 @@ const Offer = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      {/* Header */}
+      <header className="border-b border-border">
+        <div className="sp-container py-4 flex items-center gap-3">
+          <Link to="/" className="flex items-center gap-3">
+            <div className="w-9 h-9 bg-muted rounded flex items-center justify-center">
+              <span className="font-display font-semibold text-foreground text-sm">SP</span>
+            </div>
+            <span className="font-display font-medium text-foreground tracking-tight">
+              SERIOUS PEOPLE
+            </span>
+          </Link>
+        </div>
+      </header>
       {/* Hero */}
       <section className="bg-muted/30 border-b border-border py-12 md:py-16">
         <div className="sp-container-medium text-center">
