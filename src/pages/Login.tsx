@@ -64,10 +64,10 @@ const Login = () => {
             {state === "form" ? (
               <>
                 <h1 className="font-display text-2xl md:text-3xl text-foreground mb-2">
-                  Welcome back
+                  Sign in or create an account
                 </h1>
                 <p className="text-muted-foreground mb-8">
-                  Sign in to continue your session.
+                  Enter your email to get started.
                 </p>
 
                 {/* Google */}
@@ -124,7 +124,7 @@ const Login = () => {
                 </form>
 
                 <p className="text-sm text-muted-foreground text-center mt-8">
-                  We'll email you a magic link for password-free sign in.
+                  New or returning—we'll send you a magic link. No password needed.
                 </p>
               </>
             ) : (
