@@ -63,12 +63,9 @@ const Login = () => {
           <div className="w-full max-w-sm">
             {state === "form" ? (
               <>
-                <h1 className="font-display text-2xl md:text-3xl text-foreground mb-2">
+                <h1 className="font-display text-2xl md:text-3xl text-foreground mb-8">
                   Sign in or create an account
                 </h1>
-                <p className="text-muted-foreground mb-8">
-                  Enter your email to get started.
-                </p>
 
                 {/* Google */}
                 <Button
