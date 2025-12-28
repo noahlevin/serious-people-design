@@ -19,6 +19,7 @@ import Roles from "./pages/Roles";
 import RoleSituation from "./pages/RoleSituation";
 import StayOrGoCalculator from "./pages/StayOrGoCalculator";
 import NotFound from "./pages/NotFound";
+import Progress from "./pages/Progress";
 
 const queryClient = new QueryClient();
 
@@ -44,6 +45,7 @@ const App = () => (
           <Route path="/roles" element={<Roles />} />
           <Route path="/roles/:role/situations/:situation" element={<RoleSituation />} />
           <Route path="/tools/stay-or-go-calculator" element={<StayOrGoCalculator />} />
+          <Route path="/app/progress" element={<Progress />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
